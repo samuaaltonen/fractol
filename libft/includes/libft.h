@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 10:42:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/14 15:08:00 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 14:27:32 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,4 +203,5 @@ int			ft_superint_divide_samesize(t_superint **num, t_superint **denum,
 int			ft_superint_log10(t_superint **superint);
 int			ft_superint_shift(t_superint **target, int shift);
 int			ft_superint_shift_block(t_superint **target, int shift);
+int			ft_printf(const char *format, ...);
 #endif
