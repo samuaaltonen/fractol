@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 13:09:33 by saaltone          #+#    #+#             */
-/*   Updated: 2022/02/17 16:30:39 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:34:17 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	hex_precision(t_conf **conf, char **output)
 		return ;
 	zeros = ft_strnew((*conf)->precision - len);
 	if (!zeros)
-		exit_error(MSG_ALLOC_FAILED);
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	i = 0;
 	while (i < (*conf)->precision - len)
 	{
@@ -35,7 +35,7 @@ static void	hex_precision(t_conf **conf, char **output)
 	}
 	joined = ft_strjoin(zeros, *output);
 	if (!joined)
-		exit_error(MSG_ALLOC_FAILED);
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	free(*output);
 	free(zeros);
 	*output = joined;
@@ -61,7 +61,7 @@ static void	hex_prefix(t_conf **conf, char **output, long long number)
 		}
 		joined = ft_strjoin("0x", *output);
 		if (!joined)
-			exit_error(MSG_ALLOC_FAILED);
+			ft_printf_exit_error(MSG_ALLOC_FAILED);
 		free(*output);
 		*output = joined;
 	}
@@ -79,7 +79,7 @@ void	conversion_hexadecimal(t_conf **conf)
 	number = get_va_arg_unsigned(conf);
 	itoa = ft_itoa_base_ull(number, 16, 0);
 	if (!itoa)
-		return ;
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	hex_precision(conf, &itoa);
 	hex_prefix(conf, &itoa, number);
 	len = ft_strlen(itoa);

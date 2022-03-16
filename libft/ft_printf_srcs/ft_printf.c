@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:22:10 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/04 11:34:55 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:34:49 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	handle_args(t_conf **conf, char **cursor)
 		return ;
 	}
 	(*cursor)++;
-	reset_conf(conf);
+	ft_printf_reset_conf(conf);
 	handle_flags(conf, cursor);
 	handle_width(conf, cursor);
 	handle_precision(conf, cursor);
@@ -44,8 +44,8 @@ int	ft_printf(const char *format, ...)
 	char	*cursor;
 	int		n;
 
-	if (!init_conf(&conf))
-		exit_error(MSG_ALLOC_FAILED);
+	if (!ft_printf_init_conf(&conf))
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	cursor = (char *) format;
 	va_start(conf->ap, format);
 	while (*cursor)

@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:06:14 by saaltone          #+#    #+#             */
-/*   Updated: 2022/02/17 16:31:47 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:35:37 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static void	octal_precision(t_conf **conf, char **output)
 	{
 		zeros = ft_strnew((*conf)->precision - len);
 		if (!zeros)
-			exit_error(MSG_ALLOC_FAILED);
+			ft_printf_exit_error(MSG_ALLOC_FAILED);
 		i = -1;
 		while (++i < (*conf)->precision - len)
 			zeros[i] = '0';
 		joined = ft_strjoin(zeros, *output);
 		if (!joined)
-			exit_error(MSG_ALLOC_FAILED);
+			ft_printf_exit_error(MSG_ALLOC_FAILED);
 		free(*output);
 		free(zeros);
 		*output = joined;
@@ -50,7 +50,7 @@ static void	octal_prefix(t_conf **conf, char **output, unsigned long long nbr)
 	{
 		joined = ft_strjoin("0", *output);
 		if (!joined)
-			exit_error(MSG_ALLOC_FAILED);
+			ft_printf_exit_error(MSG_ALLOC_FAILED);
 		free(*output);
 		*output = joined;
 	}
@@ -80,7 +80,7 @@ void	conversion_octal(t_conf **conf)
 	number = get_va_arg_unsigned(conf);
 	itoa = ft_itoa_base_ull(number, 8, 0);
 	if (!itoa)
-		return ;
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	octal_precision(conf, &itoa);
 	octal_prefix(conf, &itoa, number);
 	octal_width(conf, &itoa, number, &len);

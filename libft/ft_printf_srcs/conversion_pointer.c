@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:44:33 by saaltone          #+#    #+#             */
-/*   Updated: 2022/02/17 16:39:58 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:34:30 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	pointer_precision(t_conf **conf, char **output)
 		return ;
 	zeros = ft_strnew((*conf)->precision - len);
 	if (!zeros)
-		exit_error(MSG_ALLOC_FAILED);
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	i = 0;
 	while (i < (*conf)->precision - len)
 	{
@@ -35,7 +35,7 @@ static void	pointer_precision(t_conf **conf, char **output)
 	}
 	joined = ft_strjoin(zeros, *output);
 	if (!joined)
-		exit_error(MSG_ALLOC_FAILED);
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	free(*output);
 	free(zeros);
 	*output = joined;
@@ -56,7 +56,7 @@ static void	pointer_prefix(t_conf **conf, char **output, unsigned long long nbr)
 		(*output)[0] = '\0';
 	joined = ft_strjoin("0x", *output);
 	if (!joined)
-		exit_error(MSG_ALLOC_FAILED);
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	free(*output);
 	*output = joined;
 }

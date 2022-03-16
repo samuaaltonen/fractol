@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 13:09:33 by saaltone          #+#    #+#             */
-/*   Updated: 2022/02/28 15:32:28 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:33:14 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	binary_precision(t_conf **conf, char **output)
 		return ;
 	zeros = ft_strnew((*conf)->precision - len);
 	if (!zeros)
-		exit_error(MSG_ALLOC_FAILED);
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	i = 0;
 	while (i < (*conf)->precision - len)
 	{
@@ -35,7 +35,7 @@ static void	binary_precision(t_conf **conf, char **output)
 	}
 	joined = ft_strjoin(zeros, *output);
 	if (!joined)
-		exit_error(MSG_ALLOC_FAILED);
+		ft_printf_exit_error(MSG_ALLOC_FAILED);
 	free(*output);
 	free(zeros);
 	*output = joined;
@@ -58,7 +58,7 @@ static void	binary_prefix(t_conf **conf, char **output, long long number)
 		}
 		joined = ft_strjoin("0x", *output);
 		if (!joined)
-			exit_error(MSG_ALLOC_FAILED);
+			ft_printf_exit_error(MSG_ALLOC_FAILED);
 		free(*output);
 		*output = joined;
 	}

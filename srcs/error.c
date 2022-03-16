@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 14:21:47 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/16 15:26:02 by saaltone         ###   ########.fr       */
+/*   Created: 2022/03/16 15:18:47 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/16 15:19:39 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(int ac, char **av)
+/*
+ * Prints usage.
+*/
+void	print_usage(void)
 {
-	t_app	*app;
+	ft_putendl("usage: ./fractol");
+}
 
-	(void)av;
-	if (ac != 1)
-	{
-		print_usage();
-		exit(EXIT_SUCCESS);
-	}
-	if (!init_app(&app) || !init_conf(&app))
-		exit_error(NULL);
-	run_app(&app);
-	return (0);
+/*
+ * Exit the program and print an error message (either with perror or variable)
+*/
+void	exit_error(char *message)
+{
+	if (message)
+		ft_putendl(message);
+	else
+		perror("Error occured");
+	exit(EXIT_FAILURE);
 }

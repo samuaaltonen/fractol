@@ -6,13 +6,13 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:49:16 by saaltone          #+#    #+#             */
-/*   Updated: 2022/02/17 16:31:23 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:34:57 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	exit_error(char	*message)
+void	ft_printf_exit_error(char	*message)
 {
 	ft_putstr(message);
 	exit(EXIT_FAILURE);

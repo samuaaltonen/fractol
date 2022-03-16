@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:23:37 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/15 12:36:59 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:32:46 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct t_color_identifier
 
 int					ft_printf(const char *format, ...);
 
-int					init_conf(t_conf **conf);
-void				reset_conf(t_conf **conf);
+int					ft_printf_init_conf(t_conf **conf);
+void				ft_printf_reset_conf(t_conf **conf);
 
 void				handle_color(t_conf **conf, char **cursor);
 void				handle_flags(t_conf **conf, char **cursor);
@@ -62,13 +62,13 @@ void				handle_conversion(t_conf **conf, char **cursor);
 long long			get_va_arg(t_conf **conf);
 unsigned long long	get_va_arg_unsigned(t_conf **conf);
 
-void				exit_error(char	*message);
+void				ft_printf_exit_error(char *message);
 void				ft_putchar_n(char c, int *n);
 void				ft_putchar_n_repeat(char c, int *n, int repeat);
 void				ft_putstr_n(char *str, int *n);
 void				ft_putstr_n_case(char *str, int *n, int is_uppercase);
 
-void				print_str(t_conf **conf, char *str, int len);
+void				ft_printf_print_str(t_conf **conf, char *str, int len);
 
 void				conversion_percent(t_conf **conf);
 void				conversion_string(t_conf **conf);

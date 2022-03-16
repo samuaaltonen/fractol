@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:55:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/15 12:44:25 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:33:25 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	conversion_float(t_conf **conf)
 	{
 		ftoa = ft_ftoa(number, (*conf)->precision);
 		if (!ftoa)
-			exit_error(MSG_ALLOC_FAILED);
+			ft_printf_exit_error(MSG_ALLOC_FAILED);
 	}
 	len = float_width(conf, ftoa);
 	if ((*conf)->width > len && !(*conf)->flag_leftadjusted
