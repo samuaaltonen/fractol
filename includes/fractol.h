@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/16 15:24:25 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:25:10 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
+# define KEY_ESC 53
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -66,5 +67,12 @@ int		init_conf(t_app **app);
 */
 int		init_app(t_app **app);
 void	run_app(t_app **app);
+
+/*
+ * Events
+*/
+int		events_key(int keycode, t_app **app);
+int		events_mouse(int mousecode, int x, int y, t_app **app);
+int		events_loop(t_app **app);
 
 #endif
