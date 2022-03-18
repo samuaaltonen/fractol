@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 14:25:10 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:35:09 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define WIN_HEIGHT 1080
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define KEY_ESC 53
+# define KEY_H 4
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -41,6 +42,7 @@ typedef struct s_conf
 	int		win_w;
 	int		win_h;
 	int		toggle_help;
+	int		animation;
 }	t_conf;
 
 typedef struct s_app
@@ -60,13 +62,14 @@ void	exit_error(char *message);
 /*
  * Configuration
 */
-int		init_conf(t_app **app);
+int		conf_init(t_app **app);
 
 /*
  * Application
 */
-int		init_app(t_app **app);
-void	run_app(t_app **app);
+int		app_init(t_app **app);
+void	app_run(t_app **app);
+void	app_render(t_app **app);
 
 /*
  * Events

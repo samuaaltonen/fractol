@@ -6,13 +6,13 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/16 15:23:58 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:35:57 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	init_conf(t_app **app)
+int	conf_init(t_app **app)
 {
 	if (!app || !(*app))
 		return (0);
@@ -23,5 +23,6 @@ int	init_conf(t_app **app)
 	(*app)->conf->toggle_help = 0;
 	(*app)->conf->win_w = WIN_WIDTH;
 	(*app)->conf->win_h = WIN_HEIGHT;
+	(*app)->conf->animation = 0;
 	return (1);
 }
