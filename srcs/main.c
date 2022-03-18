@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:21:47 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 14:36:17 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:29:33 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(int ac, char **av)
 		print_usage();
 		exit(EXIT_SUCCESS);
 	}
-	if (!app_init(&app) || !conf_init(&app))
+	if (!app_init(&app) || !conf_init(app))
 		exit_error(NULL);
-	app_run(&app);
+	app_run(app);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 15:17:36 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:29:47 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,20 @@ void	exit_error(char *message);
 /*
  * Configuration
 */
-int		conf_init(t_app **app);
+int		conf_init(t_app *app);
 
 /*
  * Application
 */
 int		app_init(t_app **app);
-void	app_run(t_app **app);
-void	app_render(t_app **app);
+void	app_run(t_app *app);
+void	app_render(t_app *app);
 
 /*
  * Events
 */
-int		events_key(int keycode, t_app **app);
-int		events_mouse(int mousecode, int x, int y, t_app **app);
-int		events_loop(t_app **app);
+int		events_key(int keycode, t_app *app);
+int		events_mouse(int mousecode, int x, int y, t_app *app);
+int		events_loop(t_app *app);
 
 #endif
