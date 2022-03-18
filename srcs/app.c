@@ -6,11 +6,23 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 14:51:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:18:05 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+ * Creates empty image and draws it to the window.
+*/
+static void	flush_window(t_app **app)
+{
+	char	*img;
+
+	img = mlx_new_image((*app)->mlx, (*app)->conf->win_w, (*app)->conf->win_h);
+	mlx_put_image_to_window((*app)->mlx, (*app)->win, img, 0, 0);
+	mlx_destroy_image((*app)->mlx, img);
+}
 
 static void	display_help(t_app **app)
 {
@@ -51,12 +63,16 @@ void	app_run(t_app **app)
 	mlx_key_hook((*app)->win, events_key, app);
 	mlx_mouse_hook((*app)->win, events_mouse, app);
 	mlx_loop_hook((*app)->mlx, events_loop, app);
-	mlx_string_put((*app)->mlx, (*app)->win, 0, 0, 3471870, "[h] Toggle help");
+	app_render(app);
 	mlx_loop((*app)->mlx);
 }
 
 void	app_render(t_app **app)
 {
+	flush_window(app);
 	if ((*app)->conf->toggle_help)
 		display_help(app);
+	else
+		mlx_string_put((*app)->mlx, (*app)->win, 0, 0,
+			3471870, "[h] Toggle help");
 }
