@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 15:29:47 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:39:58 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ int		conf_init(t_app *app);
 int		app_init(t_app **app);
 void	app_run(t_app *app);
 void	app_render(t_app *app);
+
+/*
+ * Images
+*/
+t_image	*init_image(void *mlx, t_conf *conf);
+void	put_pixel_to_image(t_image **image, int x, int y, int color);
 
 /*
  * Events
