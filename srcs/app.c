@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 14:49:16 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:51:24 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	app_run(t_app **app)
 {
 	(*app)->mlx = mlx_init();
 	(*app)->win = mlx_new_window((*app)->mlx, (*app)->conf->win_w,
-		(*app)->conf->win_h, (*app)->conf->win_name);
+			(*app)->conf->win_h, (*app)->conf->win_name);
 	mlx_key_hook((*app)->win, events_key, app);
 	mlx_mouse_hook((*app)->win, events_mouse, app);
 	mlx_loop_hook((*app)->mlx, events_loop, app);
