@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 15:39:58 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:51:25 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 # define WIN_NAME "Fractol"
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+# define MAX_ITERATIONS 100
+# define MSG_USAGE "usage: ./fractol"
+# define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
+# define FRACTAL_MANDELBROT 1
 # define KEY_ESC 53
 # define KEY_H 4
 # include <fcntl.h>
@@ -43,6 +47,8 @@ typedef struct s_conf
 	int		win_h;
 	int		toggle_help;
 	int		animation;
+	int		fractal_id;
+	int		max_iterations;
 }	t_conf;
 
 typedef struct s_app
@@ -52,6 +58,12 @@ typedef struct s_app
 	void		*mlx;
 	void		*win;
 }	t_app;
+
+typedef struct s_complex
+{
+	double	real;
+	double	imaginary;
+}	t_complex;
 
 /*
  * Messages
@@ -75,7 +87,8 @@ void	app_render(t_app *app);
  * Images
 */
 t_image	*init_image(void *mlx, t_conf *conf);
-void	put_pixel_to_image(t_image **image, int x, int y, int color);
+void	put_pixel_to_image(t_image *image, int x, int y, int color);
+void	flush_image(t_image *image);
 
 /*
  * Events
@@ -83,5 +96,10 @@ void	put_pixel_to_image(t_image **image, int x, int y, int color);
 int		events_key(int keycode, t_app *app);
 int		events_mouse(int mousecode, int x, int y, t_app *app);
 int		events_loop(t_app *app);
+
+/*
+ * Fractal iterators
+*/
+int		fractal_iterate_mandelbrot(t_complex z);
 
 #endif

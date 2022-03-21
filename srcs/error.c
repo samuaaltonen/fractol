@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:18:47 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/16 15:19:39 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:33:35 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 void	print_usage(void)
 {
-	ft_putendl("usage: ./fractol");
+	ft_putendl(MSG_USAGE);
 }
 
 /*
@@ -28,6 +28,6 @@ void	exit_error(char *message)
 	if (message)
 		ft_putendl(message);
 	else
-		perror("Error occured");
+		perror(MSG_ERROR);
 	exit(EXIT_FAILURE);
 }

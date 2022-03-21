@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:34:30 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 15:41:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:33:09 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,24 @@ t_image	*init_image(void *mlx, t_conf *conf)
  * 
  * To change color, we need to cast pixel pointer to int pointer type
 */
-void	put_pixel_to_image(t_image **image, int x, int y, int color)
+void	put_pixel_to_image(t_image *image, int x, int y, int color)
 {
 	int		bytes;
 	int		pixel_pos;
 	char	*pixel;
 
-	bytes = (*image)->bpp / 8;
-	pixel_pos = (y * (*image)->line_size) + (x * bytes);
-	if (pixel_pos < 0 || x > (*image)->width || y > (*image)->height)
+	bytes = image->bpp / 8;
+	pixel_pos = (y * image->line_size) + (x * bytes);
+	if (pixel_pos < 0 || x > image->width || y > image->height)
 		return ;
-	pixel = (*image)->data + pixel_pos;
+	pixel = image->data + pixel_pos;
 	*(int *)pixel = color;
+}
+
+/*
+ * Flushes image (sets all pixels to black)
+*/
+void	flush_image(t_image *image)
+{
+	ft_bzero(image->data, image->height * image->line_size);
 }

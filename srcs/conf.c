@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/18 15:29:17 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/21 14:41:07 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	conf_init(t_app *app)
 	app->conf->toggle_help = 0;
 	app->conf->win_w = WIN_WIDTH;
 	app->conf->win_h = WIN_HEIGHT;
-	app->conf->animation = 0;
+	app->conf->fractal_id = FRACTAL_MANDELBROT;
+	app->conf->max_iterations = MAX_ITERATIONS;
 	return (1);
 }
