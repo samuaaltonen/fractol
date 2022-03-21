@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 16:51:25 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:17:10 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 # define WIN_NAME "Fractol"
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define MAX_ITERATIONS 100
+# define MAX_ITERATIONS 40
 # define MSG_USAGE "usage: ./fractol"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
-# define FRACTAL_MANDELBROT 1
+# define FRACTAL_MANDELBROT 0
 # define KEY_ESC 53
 # define KEY_H 4
 # include <fcntl.h>
@@ -101,5 +101,10 @@ int		events_loop(t_app *app);
  * Fractal iterators
 */
 int		fractal_iterate_mandelbrot(t_complex z);
+
+/*
+ * Graphics
+*/
+void	fractal_render(t_app *app);
 
 #endif

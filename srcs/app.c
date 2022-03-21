@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 16:50:38 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:59:17 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 /*
  * Creates empty image and draws it to the window.
 */
-/* static void	flush_window(t_app *app)
+static void	flush_window(t_app *app)
 {
 	char	*img;
 
 	img = mlx_new_image(app->mlx, app->conf->win_w, app->conf->win_h);
 	mlx_put_image_to_window(app->mlx, app->win, img, 0, 0);
 	mlx_destroy_image(app->mlx, img);
-} */
+}
 
 static void	display_help(t_app *app)
 {
@@ -38,6 +38,7 @@ static void	display_help(t_app *app)
 	i = 0;
 	x = app->conf->win_w / 2 - 200;
 	y = app->conf->win_h / 2 - 140;
+	flush_window(app);
 	mlx_string_put(app->mlx, app->win, x - 130, y, 16777215, "Controls:");
 	while (h[i])
 	{
@@ -73,26 +74,11 @@ void	app_run(t_app *app)
 void	app_render(t_app *app)
 {
 	flush_image(app->image);
-	int	x;
-	int	y;
-	t_complex z;
-	x = 0;
-	while (x < WIN_WIDTH)
-	{
-		y = 0;
-		while (y < WIN_HEIGHT)
-		{
-			z.real = (x / (double) WIN_WIDTH) * 3 - 2;
-			z.imaginary = (y / (double) WIN_HEIGHT) * 2 - 1;
-			if (fractal_iterate_mandelbrot(z) < MAX_ITERATIONS)
-				put_pixel_to_image(app->image, x, y, 0x00FFFFFF);
-			y++;
-		}
-		x++;
-	}
-	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
 	if (app->conf->toggle_help)
+	{
 		display_help(app);
-	else
-		mlx_string_put(app->mlx, app->win, 0, 0, 3471870, "[h] Toggle help");
+		return ;
+	}
+	fractal_render(app);
+	mlx_string_put(app->mlx, app->win, 0, 0, 0x0034F9FE, "[h] Toggle help");
 }
