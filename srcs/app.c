@@ -6,23 +6,11 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 18:02:40 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:15:21 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-/*
- * Creates empty image and draws it to the window.
-*/
-static void	flush_window(t_app *app)
-{
-	char	*img;
-
-	img = mlx_new_image(app->mlx, app->conf->win_w, app->conf->win_h);
-	mlx_put_image_to_window(app->mlx, app->win, img, 0, 0);
-	mlx_destroy_image(app->mlx, img);
-}
 
 static void	display_help(t_app *app)
 {
@@ -39,7 +27,7 @@ static void	display_help(t_app *app)
 	i = 0;
 	x = app->conf->win_w / 2 - 200;
 	y = app->conf->win_h / 2 - 140;
-	flush_window(app);
+	mlx_clear_window(app->mlx, app->win);
 	mlx_string_put(app->mlx, app->win, x - 130, y, 16777215, "Controls:");
 	while (h[i])
 	{

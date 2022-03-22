@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 13:09:39 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:11:29 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void	fractal_render(t_app *app)
 		y = -1;
 		while (++y < WIN_HEIGHT)
 		{
-			result = (*iterator)((t_complex){(x / (double) WIN_WIDTH) * 3 - 2,
-					(y / (double) WIN_HEIGHT) * 2 - 1});
+			result = (*iterator)((t_complex){
+					(x / (double) WIN_WIDTH) * 3 - 2,
+					(y / (double) WIN_HEIGHT) * 2 - 1
+				});
 			if (result < MAX_ITERATIONS)
 				put_pixel_to_image(app->image, x, y,
 					app->conf->color_preset[result + app->conf->color_step]);
