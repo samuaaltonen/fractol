@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 18:00:38 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:06:45 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	events_loop(t_app *app)
 	if (!app->conf->animation)
 		return (0);
 	app->conf->color_step++;
-	if (app->conf->color_step >= 148)
+	if (app->conf->color_step >= COLOR_COUNT - MAX_ITERATIONS)
 		app->conf->color_step = 0;
 	app_render(app);
 	return (0);

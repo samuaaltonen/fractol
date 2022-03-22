@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 13:01:04 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:08:06 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	conf_init(t_app *app)
 {
 	if (!app)
 		return (0);
+	if (MAX_ITERATIONS > COLOR_COUNT)
+		exit_error(MSG_ERROR_TOO_MANY_ITERATIONS);
 	app->conf = (t_conf *)malloc(sizeof(t_conf));
 	if (!(app->conf))
 		return (0);
