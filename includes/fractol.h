@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 14:43:02 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 18:43:55 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ typedef struct s_image
 	char	*data;
 }	t_image;
 
+typedef struct s_complex
+{
+	long double	real;
+	long double	imaginary;
+}	t_complex;
+
+typedef struct s_coord
+{
+	long long	x;
+	long long	y;
+}	t_coord;
+
 typedef struct s_conf
 {
 	char	*win_name;
@@ -65,6 +77,9 @@ typedef struct s_conf
 	int		fps_time;
 	int		fps_count;
 	double	zoom_multiplier;
+	t_coord	grid_size;
+	t_coord	grid_offset;
+	t_coord	grid_origin;
 }	t_conf;
 
 typedef struct s_app
@@ -74,12 +89,6 @@ typedef struct s_app
 	void		*mlx;
 	void		*win;
 }	t_app;
-
-typedef struct s_complex
-{
-	double	real;
-	double	imaginary;
-}	t_complex;
 
 /*
  * Messages
