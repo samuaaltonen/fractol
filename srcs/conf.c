@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 14:38:01 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:42:17 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	conf_init(t_app *app)
 	app->conf->fps = 0;
 	app->conf->fps_time = time(NULL);
 	app->conf->fps_count = 0;
+	app->conf->zoom_multiplier = 1.f;
 	init_color_preset(app);
 	return (1);
 }

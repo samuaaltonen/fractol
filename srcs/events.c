@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 14:37:30 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:44:22 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	events_key(int keycode, t_app *app)
 int	events_mouse(int mousecode, int x, int y, t_app *app)
 {
 	ft_printf("mousecode: %i x: %i y: %i app: %p\n", mousecode, x, y, app);
+	if (mousecode == MOUSE_SCROLL_UP)
+		app->conf->zoom_multiplier /= 1.05;
+	if (mousecode == MOUSE_SCROLL_DOWN)
+		app->conf->zoom_multiplier *= 1.05;
 	app_render(app);
 	return (0);
 }

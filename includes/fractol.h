@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 14:37:53 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:43:02 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ preset count."
 # define KEY_H 4
 # define KEY_A 0
 # define KEY_C 8
+# define MOUSE_SCROLL_UP 4
+# define MOUSE_SCROLL_DOWN 5
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -62,6 +64,7 @@ typedef struct s_conf
 	int		fps;
 	int		fps_time;
 	int		fps_count;
+	double	zoom_multiplier;
 }	t_conf;
 
 typedef struct s_app

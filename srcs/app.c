@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 14:36:42 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:42:37 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,5 @@ void	app_render(t_app *app)
 	}
 	fractal_render(app);
 	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
-	ft_printf("Color step: %i\n", app->conf->color_step);
 	update_fps_counter(app);
 }
