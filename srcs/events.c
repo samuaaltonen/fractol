@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 17:17:58 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:00:38 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	events_key(int keycode, t_app *app)
 		exit(EXIT_SUCCESS);
 	if (keycode == KEY_H)
 		app->conf->toggle_help = ft_toggle(app->conf->toggle_help);
+	if (keycode == KEY_A)
+		app->conf->animation = ft_toggle(app->conf->animation);
 	app_render(app);
 	return (0);
 }
@@ -43,6 +45,9 @@ int	events_loop(t_app *app)
 {
 	if (!app->conf->animation)
 		return (0);
+	app->conf->color_step++;
+	if (app->conf->color_step >= 148)
+		app->conf->color_step = 0;
 	app_render(app);
 	return (0);
 }

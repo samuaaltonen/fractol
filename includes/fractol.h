@@ -6,22 +6,24 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 17:17:10 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:00:57 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # define WIN_NAME "Fractol"
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
-# define MAX_ITERATIONS 40
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
+# define MAX_ITERATIONS 50
+# define COLOR_COUNT 148
 # define MSG_USAGE "usage: ./fractol"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define FRACTAL_MANDELBROT 0
 # define KEY_ESC 53
 # define KEY_H 4
+# define KEY_A 0
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -49,6 +51,8 @@ typedef struct s_conf
 	int		animation;
 	int		fractal_id;
 	int		max_iterations;
+	int		color_step;
+	int		color_preset[COLOR_COUNT];
 }	t_conf;
 
 typedef struct s_app

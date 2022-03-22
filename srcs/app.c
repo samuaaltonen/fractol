@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 16:59:17 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:02:40 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	display_help(t_app *app)
 	int					y;
 	static const char	*h[] = {
 		"[h]                   Toggle help",
+		"[a]                   Toggle animation",
 		"[esc]                 Exit",
 		NULL,
 	};

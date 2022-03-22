@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 17:17:20 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:04:02 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,29 @@ static void	*get_fractal_iterator(t_app *app)
 
 void	fractal_render(t_app *app)
 {
-	int			x;
-	int			y;
-	t_complex	z;
-	int			(*iterator)(t_complex);
+	int	x;
+	int	y;
+	int	(*iterator)(t_complex);
+	int	result;
+	int	color_id;
 
 	iterator = get_fractal_iterator(app);
-	x = 0;
-	while (x < WIN_WIDTH)
+	x = -1;
+	while (++x < WIN_WIDTH)
 	{
-		y = 0;
-		while (y < WIN_HEIGHT)
+		y = -1;
+		while (++y < WIN_HEIGHT)
 		{
-			z.real = (x / (double) WIN_WIDTH) * 3 - 2;
-			z.imaginary = (y / (double) WIN_HEIGHT) * 2 - 1;
-			if ((*iterator)(z) < MAX_ITERATIONS)
-				put_pixel_to_image(app->image, x, y, 0x00FFFFFF);
-			y++;
+			result = (*iterator)((t_complex){(x / (double) WIN_WIDTH) * 3 - 2,
+					(y / (double) WIN_HEIGHT) * 2 - 1});
+			if (result + app->conf->color_step > COLOR_COUNT)
+				color_id = (result + app->conf->color_step) % COLOR_COUNT;
+			else
+				color_id = result + app->conf->color_step;
+			if (result < MAX_ITERATIONS)
+				put_pixel_to_image(app->image, x, y,
+					app->conf->color_preset[color_id]);
 		}
-		x++;
 	}
 	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
 }
