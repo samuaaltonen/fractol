@@ -6,11 +6,31 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 13:15:21 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:34:22 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+ * Calculates FPS and displays it.
+*/
+static void	update_fps_counter(t_app *app)
+{
+	int	time_since;
+
+	app->conf->fps_count++;
+	if (time(NULL) > app->conf->fps_time + 2)
+	{
+		time_since = time(NULL) - app->conf->fps_time;
+		app->conf->fps = app->conf->fps_count / time_since;
+		app->conf->fps_time = time(NULL);
+		app->conf->fps_count = 0;
+	}
+	mlx_string_put(app->mlx, app->win, 170, 0, 0xFFFFFF, "FPS");
+	mlx_string_put(app->mlx, app->win, 210, 0, 0xFFFFFF,
+		ft_itoa(app->conf->fps));
+}
 
 static void	display_help(t_app *app)
 {
@@ -69,5 +89,6 @@ void	app_render(t_app *app)
 		return ;
 	}
 	fractal_render(app);
-	mlx_string_put(app->mlx, app->win, 0, 0, 0x0034F9FE, "[h] Toggle help");
+	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
+	update_fps_counter(app);
 }
