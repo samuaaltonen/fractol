@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 13:34:07 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:37:30 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int	events_key(int keycode, t_app *app)
 	if (keycode == KEY_H)
 		app->conf->toggle_help = ft_toggle(app->conf->toggle_help);
 	if (keycode == KEY_A)
-		app->conf->animation = ft_toggle(app->conf->animation);
+		app->conf->toggle_animation = ft_toggle(app->conf->toggle_animation);
+	if (keycode == KEY_C)
+		app->conf->toggle_chaos = ft_toggle(app->conf->toggle_chaos);
 	app_render(app);
 	return (0);
 }
@@ -43,10 +45,10 @@ int	events_mouse(int mousecode, int x, int y, t_app *app)
 */
 int	events_loop(t_app *app)
 {
-	if (!app->conf->animation)
+	if (!app->conf->toggle_animation)
 		return (0);
 	app->conf->color_step++;
-	if (app->conf->color_step >= COLOR_COUNT - MAX_ITERATIONS)
+	if (app->conf->color_step >= COLOR_COUNT)
 		app->conf->color_step = 0;
 	app_render(app);
 	return (0);

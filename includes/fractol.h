@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 13:31:06 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:37:53 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ preset count."
 # define KEY_ESC 53
 # define KEY_H 4
 # define KEY_A 0
+# define KEY_C 8
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -51,11 +52,13 @@ typedef struct s_conf
 	int		win_w;
 	int		win_h;
 	int		toggle_help;
-	int		animation;
+	int		toggle_animation;
+	int		toggle_chaos;
 	int		fractal_id;
 	int		max_iterations;
 	int		color_step;
-	int		color_preset[COLOR_COUNT];
+	int		color_preset[COLOR_COUNT + MAX_ITERATIONS];
+	int		chaos_preset[COLOR_COUNT + MAX_ITERATIONS];
 	int		fps;
 	int		fps_time;
 	int		fps_count;

@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 13:31:12 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:38:01 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,23 @@ static void	init_color_preset(t_app *app)
 	int	g;
 	int	b;
 	int	i;
+	int	random;
 
 	i = 0;
-	while (i < COLOR_COUNT)
+	srand(time(NULL));
+	while (i < COLOR_COUNT + MAX_ITERATIONS)
 	{
 		r = (sin(0.042 * i + 2) + 1) * 127;
 		g = (sin(0.042 * i) + 1) * 127;
 		b = (sin(0.042 * i + 4) + 1) * 127;
 		app->conf->color_preset[i] = ft_rgbtoint(r, g, b);
+		random = rand();
+		srand(random);
+		random = random % (COLOR_COUNT + MAX_ITERATIONS);
+		r = (sin(0.042 * random + 2) + 1) * 127;
+		g = (sin(0.042 * random) + 1) * 127;
+		b = (sin(0.042 * random + 4) + 1) * 127;
+		app->conf->chaos_preset[i] = ft_rgbtoint(r, g, b);
 		i++;
 	}
 }
@@ -41,6 +50,8 @@ int	conf_init(t_app *app)
 		return (0);
 	app->conf->win_name = WIN_NAME;
 	app->conf->toggle_help = 0;
+	app->conf->toggle_animation = 0;
+	app->conf->toggle_chaos = 0;
 	app->conf->win_w = WIN_WIDTH;
 	app->conf->win_h = WIN_HEIGHT;
 	app->conf->fractal_id = FRACTAL_MANDELBROT;
