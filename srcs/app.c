@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 14:42:37 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:51:02 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ void	app_run(t_app *app)
 	app->mlx = mlx_init();
 	app->win = mlx_new_window(app->mlx, app->conf->win_w,
 			app->conf->win_h, app->conf->win_name);
-	mlx_key_hook(app->win, events_key, app);
+	mlx_key_hook(app->win, events_keyup, app);
+	mlx_hook(app->win, 2, 0, events_keydown, app);
 	mlx_mouse_hook(app->win, events_mouse, app);
 	mlx_loop_hook(app->mlx, events_loop, app);
+
 	app->image = init_image(app->mlx, app->conf);
 	if (!app->image)
 		exit_error(NULL);
@@ -91,5 +93,7 @@ void	app_render(t_app *app)
 	}
 	fractal_render(app);
 	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
+	mlx_string_put(app->mlx, app->win, 260, 0, 0xFFFFFF, "Iterations:");
+	mlx_string_put(app->mlx, app->win, 380, 0, 0xFFFFFF, ft_itoa(app->conf->max_iterations));
 	update_fps_counter(app);
 }

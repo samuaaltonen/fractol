@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 13:25:26 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:13:33 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	fractal_render(t_app *app)
 {
 	int	x;
 	int	y;
-	int	(*iterator)(t_complex);
+	int	(*iterator)(t_complex, int);
 	int	result;
 	int	*colors;
 
@@ -42,8 +42,9 @@ void	fractal_render(t_app *app)
 		{
 			result = (*iterator)((t_complex){
 					x * app->conf->grid.x_len / WIN_WIDTH + app->conf->grid.x_min,
-					y * app->conf->grid.y_len / WIN_HEIGHT + app->conf->grid.y_min});
-			if (result < MAX_ITERATIONS)
+					y * app->conf->grid.y_len / WIN_HEIGHT + app->conf->grid.y_min},
+					app->conf->max_iterations);
+			if (result < app->conf->max_iterations)
 				put_pixel_to_image(app->image, x, y,
 					colors[app->conf->color_step + result]);
 		}

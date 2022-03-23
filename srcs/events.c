@@ -6,16 +6,16 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 13:24:45 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:49:22 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 /*
- * Handles events for key presses.
+ * Handles events for key presses (keyup).
 */
-int	events_key(int keycode, t_app *app)
+int	events_keyup(int keycode, t_app *app)
 {
 	ft_printf("keycode: %i, app: %p\n", keycode, app);
 	if (keycode == KEY_ESC)
@@ -26,6 +26,21 @@ int	events_key(int keycode, t_app *app)
 		app->conf->toggle_animation = ft_toggle(app->conf->toggle_animation);
 	if (keycode == KEY_C)
 		app->conf->toggle_chaos = ft_toggle(app->conf->toggle_chaos);
+	app_render(app);
+	return (0);
+}
+
+/*
+ * Handles events for key presses (keydown).
+*/
+int	events_keydown(int keycode, t_app *app)
+{
+	if (keycode == KEY_ARROW_LEFT)
+		app->conf->max_iterations -= 1;
+	if (keycode == KEY_ARROW_RIGHT)
+		app->conf->max_iterations += 1;
+	if (app->conf->max_iterations < 0)
+		app->conf->max_iterations = 0;
 	app_render(app);
 	return (0);
 }

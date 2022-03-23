@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 13:26:26 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:32:46 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define WIN_NAME "Fractol"
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define MAX_ITERATIONS 150
+# define MAX_ITERATIONS 50
 # define COLOR_COUNT 148
 # define MSG_USAGE "usage: ./fractol"
 # define MSG_ERROR "Error occured"
@@ -25,6 +25,8 @@
 # define KEY_H 4
 # define KEY_A 0
 # define KEY_C 8
+# define KEY_ARROW_LEFT 123
+# define KEY_ARROW_RIGHT 124
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
 # include <fcntl.h>
@@ -121,14 +123,15 @@ void	flush_image(t_image *image);
 /*
  * Events
 */
-int		events_key(int keycode, t_app *app);
+int		events_keyup(int keycode, t_app *app);
+int		events_keydown(int keycode, t_app *app);
 int		events_mouse(int mousecode, int x, int y, t_app *app);
 int		events_loop(t_app *app);
 
 /*
  * Fractal iterators
 */
-int		fractal_iterate_mandelbrot(t_complex z);
+int		fractal_iterate_mandelbrot(t_complex z, int iterations);
 
 /*
  * Graphics
