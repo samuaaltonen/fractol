@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 18:44:02 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:26:21 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	conf_init(t_app *app)
 {
 	if (!app)
 		return (0);
-	if (MAX_ITERATIONS > COLOR_COUNT)
-		exit_error(MSG_ERROR_TOO_MANY_ITERATIONS);
 	app->conf = (t_conf *)malloc(sizeof(t_conf));
 	if (!(app->conf))
 		return (0);
@@ -61,10 +59,7 @@ int	conf_init(t_app *app)
 	app->conf->fps = 0;
 	app->conf->fps_time = time(NULL);
 	app->conf->fps_count = 0;
-	app->conf->grid_size = (t_coord){WIN_WIDTH, WIN_HEIGHT};
-	app->conf->grid_offset = (t_coord){0, 0};
-	app->conf->grid_origin = (t_coord){0, 0};
-	app->conf->zoom_multiplier = 1.f;
+	app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
 	init_color_preset(app);
 	return (1);
 }

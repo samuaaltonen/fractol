@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 18:43:55 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:26:26 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 # define WIN_NAME "Fractol"
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define MAX_ITERATIONS 50
+# define MAX_ITERATIONS 150
 # define COLOR_COUNT 148
 # define MSG_USAGE "usage: ./fractol"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
-# define MSG_ERROR_TOO_MANY_ITERATIONS "Iteration count is higher than color \
-preset count."
 # define FRACTAL_MANDELBROT 0
 # define KEY_ESC 53
 # define KEY_H 4
@@ -60,6 +58,14 @@ typedef struct s_coord
 	long long	y;
 }	t_coord;
 
+typedef struct s_grid
+{
+	long double	x_min;
+	long double	y_min;
+	long double	x_len;
+	long double	y_len;
+}	t_grid;
+
 typedef struct s_conf
 {
 	char	*win_name;
@@ -76,10 +82,7 @@ typedef struct s_conf
 	int		fps;
 	int		fps_time;
 	int		fps_count;
-	double	zoom_multiplier;
-	t_coord	grid_size;
-	t_coord	grid_offset;
-	t_coord	grid_origin;
+	t_grid	grid;
 }	t_conf;
 
 typedef struct s_app

@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/22 19:19:48 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:24:45 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,21 @@ int	events_key(int keycode, t_app *app)
 */
 int	events_mouse(int mousecode, int x, int y, t_app *app)
 {
-	ft_printf("mousecode: %i x: %i y: %i app: %p\n", mousecode, x, y, app);
+	//ft_printf("mousecode: %i x: %i y: %i app: %p\n", mousecode, x, y, app);
 	if (mousecode == MOUSE_SCROLL_UP)
-		app->conf->zoom_multiplier *= 1.05;
+	{
+		app->conf->grid.x_min += x * app->conf->grid.x_len * 0.05 / WIN_WIDTH;
+		app->conf->grid.y_min += y * app->conf->grid.y_len * 0.05 / WIN_HEIGHT;
+		app->conf->grid.x_len /= 1.05;
+		app->conf->grid.y_len /= 1.05;
+	}
 	if (mousecode == MOUSE_SCROLL_DOWN)
-		app->conf->zoom_multiplier /= 1.05;
-	app->conf->grid_size.x = WIN_WIDTH * app->conf->zoom_multiplier;
-	app->conf->grid_size.y = WIN_HEIGHT * app->conf->zoom_multiplier;
-	/* x += app->conf->grid_offset.x;
-	y += app->conf->grid_offset.y; */
-	if (x == 0)
-		app->conf->grid_offset.x = 0;
-	else
-		app->conf->grid_offset.x = (app->conf->grid_size.x - WIN_WIDTH) * (x / (long double) app->conf->grid_size.x);
-	if (y == 0)
-		app->conf->grid_offset.y = 0;
-	else
-		app->conf->grid_offset.y = (app->conf->grid_size.y - WIN_HEIGHT) * (y / (long double) app->conf->grid_size.y);
-	ft_printf("x: %i y: %i offset: %i,%i grid: %i,%i origin: %i,%i\n", x, y,
-		app->conf->grid_offset.x, app->conf->grid_offset.y,
-		app->conf->grid_size.x, app->conf->grid_size.y,
-		app->conf->grid_origin.x, app->conf->grid_origin.y
-	);
+	{
+		app->conf->grid.x_min -= x * app->conf->grid.x_len * 0.05 / WIN_WIDTH;
+		app->conf->grid.y_min -= y * app->conf->grid.y_len * 0.05 / WIN_HEIGHT;
+		app->conf->grid.x_len *= 1.05;
+		app->conf->grid.y_len *= 1.05;
+	}
 	app_render(app);
 	return (0);
 }
