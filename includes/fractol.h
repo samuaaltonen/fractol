@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 15:32:46 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:00:42 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ typedef struct s_coord
 
 typedef struct s_grid
 {
-	long double	x_min;
-	long double	y_min;
-	long double	x_len;
-	long double	y_len;
+	double	x_min;
+	double	y_min;
+	double	x_len;
+	double	y_len;
 }	t_grid;
 
 typedef struct s_conf
@@ -84,6 +84,7 @@ typedef struct s_conf
 	int		fps;
 	int		fps_time;
 	int		fps_count;
+	int		total_iterations;
 	t_grid	grid;
 }	t_conf;
 

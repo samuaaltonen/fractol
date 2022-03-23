@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 13:26:21 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:43:53 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	conf_init(t_app *app)
 	app->conf->fps_time = time(NULL);
 	app->conf->fps_count = 0;
 	app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
+	app->conf->total_iterations = 0;
 	init_color_preset(app);
 	return (1);
 }

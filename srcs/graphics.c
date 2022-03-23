@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 15:13:33 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:44:50 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	fractal_render(t_app *app)
 	int	result;
 	int	*colors;
 
+	app->conf->total_iterations = 0;
 	colors = app->conf->color_preset;
 	if (app->conf->toggle_chaos)
 		colors = app->conf->chaos_preset;
@@ -47,7 +48,9 @@ void	fractal_render(t_app *app)
 			if (result < app->conf->max_iterations)
 				put_pixel_to_image(app->image, x, y,
 					colors[app->conf->color_step + result]);
+			app->conf->total_iterations += result;
 		}
 	}
 	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
+	ft_printf("Total iterations: %i\n", app->conf->total_iterations);
 }

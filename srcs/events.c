@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 14:49:22 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:40:47 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	events_mouse(int mousecode, int x, int y, t_app *app)
 		app->conf->grid.x_len *= 1.05;
 		app->conf->grid.y_len *= 1.05;
 	}
+	ft_printf("Grind len: %.20Lf, grid start: %.20Lf\n", app->conf->grid.x_len, app->conf->grid.x_min);
 	app_render(app);
 	return (0);
 }
