@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 16:14:32 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:36:54 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define KEY_A 0
 # define KEY_C 8
 # define KEY_M 46
+# define KEY_Q 12
+# define KEY_W 13
 # define KEY_1 18
 # define KEY_2 19
 # define KEY_3 20
@@ -46,6 +48,8 @@
 # define KEY_PGDOWN 121
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
+# define THREADS_DEFAULT 6
+# define THREADS_MAX 16
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -80,6 +84,15 @@ typedef struct s_grid
 	long double	y_w;
 }	t_grid;
 
+typedef struct s_thread_data
+{
+	void	*app;
+	int		x_start;
+	int		y_start;
+	int		x_end;
+	int		y_end;
+}	t_thread_data;
+
 typedef struct s_conf
 {
 	char		*win_name;
@@ -100,26 +113,19 @@ typedef struct s_conf
 	int			fps_time;
 	int			fps_count;
 	int			total_iterations;
+	int			thread_count;
 	t_grid		grid;
 	t_complex	c;
 }	t_conf;
 
 typedef struct s_app
 {
-	t_conf		*conf;
-	t_image		*image;
-	void		*mlx;
-	void		*win;
+	t_conf			*conf;
+	t_image			*image;
+	void			*mlx;
+	void			*win;
+	t_thread_data	thread_info[THREADS_MAX];
 }	t_app;
-
-typedef struct s_thread_data
-{
-	t_app	*app;
-	int		x_start;
-	int		y_start;
-	int		x_end;
-	int		y_end;
-}	t_thread_data;
 
 /*
  * Messages
@@ -131,6 +137,7 @@ void	exit_error(char *message);
  * Configuration
 */
 int		conf_init(t_app *app);
+void	init_thread_info(t_app *app);
 
 /*
  * Input

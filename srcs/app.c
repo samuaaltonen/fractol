@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 15:37:08 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:33:36 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ static void	update_fps_counter(t_app *app)
 		app->conf->fps_time = time(NULL);
 		app->conf->fps_count = 0;
 	}
-	mlx_string_put(app->mlx, app->win, 170, 0, 0xFFFFFF, "FPS");
-	mlx_string_put(app->mlx, app->win, 210, 0, 0xFFFFFF,
-		ft_itoa(app->conf->fps));
 }
 
 static void	display_help(t_app *app)
@@ -38,13 +35,15 @@ static void	display_help(t_app *app)
 	int					x;
 	int					y;
 	static const char	*h[] = {
-		"[1]                   FRACTAL: Mandelbrot set",
-		"[2]                   FRACTAL: Julia set",
-		"[h]                   Toggle help",
-		"[a]                   Toggle animation",
-		"[c]                   Toggle chaos",
-		"[m]                   Toggle mouse tracking (Julia)",
-		"[esc]                 Exit",
+		"[1]               FRACTAL: Mandelbrot set",
+		"[2]               FRACTAL: Julia set",
+		"[h]               Toggle help",
+		"[a]               Toggle animation",
+		"[c]               Toggle chaos",
+		"[m]               Toggle mouse tracking (Julia)",
+		"[q]               Decrease thread count",
+		"[w]               Increase thread count",
+		"[esc]             Exit",
 		NULL,
 	};
 
@@ -95,9 +94,15 @@ void	app_render(t_app *app)
 		return ;
 	}
 	fractal_render_multithreaded(app);
-	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
-	mlx_string_put(app->mlx, app->win, 260, 0, 0xFFFFFF, "Iterations:");
-	mlx_string_put(app->mlx, app->win, 380, 0, 0xFFFFFF,
-		ft_itoa(app->conf->iterations));
 	update_fps_counter(app);
+	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
+	mlx_string_put(app->mlx, app->win, 0, 20, 0xFFFFFF, "Iterations:");
+	mlx_string_put(app->mlx, app->win, 120, 20, 0xFFFFFF,
+		ft_itoa(app->conf->iterations));
+	mlx_string_put(app->mlx, app->win, 0, 40, 0xFFFFFF, "Threads:");
+	mlx_string_put(app->mlx, app->win, 120, 40, 0xFFFFFF,
+		ft_itoa(app->conf->thread_count));
+	mlx_string_put(app->mlx, app->win, 0, 60, 0xFFFFFF, "FPS:");
+	mlx_string_put(app->mlx, app->win, 120, 60, 0xFFFFFF,
+		ft_itoa(app->conf->fps));
 }

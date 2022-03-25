@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 16:12:57 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:29:19 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,26 @@ static void	init_color_preset(t_app *app)
 	app->conf->colors = app->conf->color_preset;
 }
 
+void	init_thread_info(t_app *app)
+{
+	int	i;
+	int	width_per_thread;
+
+	i = 0;
+	width_per_thread = WIN_W / app->conf->thread_count;
+	while (i < app->conf->thread_count && i < THREADS_MAX)
+	{
+		app->thread_info[i] = (t_thread_data){
+			app,
+			width_per_thread * i,
+			0,
+			width_per_thread * (i + 1),
+			WIN_H
+		};
+		i++;
+	}
+}
+
 int	conf_init(t_app *app)
 {
 	if (!app)
@@ -65,6 +85,8 @@ int	conf_init(t_app *app)
 	app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
 	app->conf->total_iterations = 0;
 	app->conf->c = (t_complex){0.L, 0.L};
+	app->conf->thread_count = THREADS_DEFAULT;
 	init_color_preset(app);
+	init_thread_info(app);
 	return (1);
 }

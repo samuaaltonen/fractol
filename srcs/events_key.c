@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 16:14:16 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:30:48 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,32 @@
 */
 static void	handle_fractal_keys(int keycode, t_app *app)
 {
+	if (!(keycode == KEY_1 || keycode == KEY_2 || keycode == KEY_3
+		|| keycode == KEY_4 || keycode == KEY_5 || keycode == KEY_6))
+		return ;
 	if (keycode == KEY_1)
 		app->conf->fractal_id = FRACTAL_MANDELBROT;
 	if (keycode == KEY_2)
 		app->conf->fractal_id = FRACTAL_JULIA;
 	switch_fractal(app);
+}
+
+/*
+ * Changes thread count.
+*/
+static void	handle_thread_keys(int keycode, t_app *app)
+{
+	if (!(keycode == KEY_Q || keycode == KEY_W))
+		return ;
+	if (keycode == KEY_Q)
+		app->conf->thread_count--;
+	if (keycode == KEY_W)
+		app->conf->thread_count++;
+	if (app->conf->thread_count < 1)
+		app->conf->thread_count = 1;
+	if (app->conf->thread_count > THREADS_MAX)
+		app->conf->thread_count = THREADS_MAX;
+	init_thread_info(app);
 }
 
 /*
@@ -46,9 +67,8 @@ int	events_keyup(int keycode, t_app *app)
 	}
 	if (keycode == KEY_M)
 		app->conf->toggle_tracking = ft_toggle(app->conf->toggle_tracking);
-	if (keycode == KEY_1 || keycode == KEY_2 || keycode == KEY_3
-		|| keycode == KEY_4 || keycode == KEY_5 || keycode == KEY_6)
-		handle_fractal_keys(keycode, app);
+	handle_thread_keys(keycode, app);
+	handle_fractal_keys(keycode, app);
 	app_render(app);
 	return (0);
 }
