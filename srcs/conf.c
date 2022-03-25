@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 14:12:29 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:33:59 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	init_color_preset(t_app *app)
 		app->conf->chaos_preset[i] = ft_rgbtoint(r, g, b);
 		i++;
 	}
+	app->conf->colors = app->conf->color_preset;
 }
 
 int	conf_init(t_app *app)
@@ -51,9 +52,10 @@ int	conf_init(t_app *app)
 	app->conf->toggle_animation = 0;
 	app->conf->toggle_chaos = 0;
 	app->conf->toggle_tracking = 1;
-	app->conf->win_w = WIN_WIDTH;
-	app->conf->win_h = WIN_HEIGHT;
+	app->conf->win_w = WIN_W;
+	app->conf->win_h = WIN_H;
 	app->conf->fractal_id = FRACTAL_MANDELBROT;
+	app->conf->fractal_iterator = fractal_iterate_mandelbrot;
 	app->conf->iterations = DEFAULT_ITERATIONS;
 	app->conf->color_step = 0;
 	app->conf->fps_count = 0;

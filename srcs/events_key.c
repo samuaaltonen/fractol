@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   events_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 14:32:06 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:41:43 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@
 static void	change_fractal(int keycode, t_app *app)
 {
 	if (keycode == KEY_1)
+	{
 		app->conf->fractal_id = FRACTAL_MANDELBROT;
+		app->conf->fractal_iterator = fractal_iterate_mandelbrot;
+	}
 	if (keycode == KEY_2)
+	{
 		app->conf->fractal_id = FRACTAL_JULIA;
+		app->conf->fractal_iterator = fractal_iterate_julia;
+	}
 	init_fractal_coordinates(app);
 }
 
@@ -37,7 +43,13 @@ int	events_keyup(int keycode, t_app *app)
 	if (keycode == KEY_A)
 		app->conf->toggle_animation = ft_toggle(app->conf->toggle_animation);
 	if (keycode == KEY_C)
+	{
 		app->conf->toggle_chaos = ft_toggle(app->conf->toggle_chaos);
+		if (app->conf->toggle_chaos)
+			app->conf->colors = app->conf->chaos_preset;
+		else
+			app->conf->colors = app->conf->color_preset;
+	}
 	if (keycode == KEY_M)
 		app->conf->toggle_tracking = ft_toggle(app->conf->toggle_tracking);
 	if (keycode == KEY_1 || keycode == KEY_2 || keycode == KEY_3
@@ -61,66 +73,13 @@ int	events_keydown(int keycode, t_app *app)
 	if (app->conf->iterations > MAX_ITERATIONS)
 		app->conf->iterations = MAX_ITERATIONS;
 	if (keycode == KEY_ARROW_UP)
-		app->conf->grid.y_min -= 0.03125 * app->conf->grid.x_len;
+		app->conf->grid.y -= 0.03125 * app->conf->grid.y_w;
 	if (keycode == KEY_ARROW_DOWN)
-		app->conf->grid.y_min += 0.03125 * app->conf->grid.x_len;
+		app->conf->grid.y += 0.03125 * app->conf->grid.y_w;
 	if (keycode == KEY_ARROW_LEFT)
-		app->conf->grid.x_min -= 0.03125 * app->conf->grid.x_len;
+		app->conf->grid.x -= 0.03125 * app->conf->grid.x_w;
 	if (keycode == KEY_ARROW_RIGHT)
-		app->conf->grid.x_min += 0.03125 * app->conf->grid.x_len;
-	app_render(app);
-	return (0);
-}
-
-/*
- * Handles events for mouse..
-*/
-int	events_mouse(int mousecode, int x, int y, t_app *app)
-{
-	ft_printf("mousecode: %i x: %i y: %i\n", mousecode, x, y);
-	if (mousecode == MOUSE_SCROLL_UP)
-	{
-		app->conf->grid.x_min += x * app->conf->grid.x_len * 0.125 / WIN_WIDTH;
-		app->conf->grid.y_min += y * app->conf->grid.y_len * 0.125 / WIN_HEIGHT;
-		app->conf->grid.x_len /= 1.125;
-		app->conf->grid.y_len /= 1.125;
-	}
-	if (mousecode == MOUSE_SCROLL_DOWN)
-	{
-		app->conf->grid.x_min -= x * app->conf->grid.x_len * 0.125 / WIN_WIDTH;
-		app->conf->grid.y_min -= y * app->conf->grid.y_len * 0.125 / WIN_HEIGHT;
-		app->conf->grid.x_len *= 1.125;
-		app->conf->grid.y_len *= 1.125;
-	}
-	return (0);
-}
-
-/*
- * Tracks mouse position and sets initial c value depending on mouse
- * coordinates. (This is used in Julia set).
-*/
-int	events_mouse_track(int x, int y, t_app *app)
-{
-	if (!app->conf->toggle_tracking)
-		return (0);
-	app->conf->c = (t_complex){
-			x / (long double) (WIN_WIDTH * 2),
-			y / (long double) (WIN_HEIGHT * 2)
-		};
-	return (0);
-}
-
-/*
- * Handles continuous events.
-*/
-int	events_loop(t_app *app)
-{
-	if (app->conf->toggle_animation)
-	{
-		app->conf->color_step++;
-		if (app->conf->color_step >= COLOR_COUNT)
-			app->conf->color_step = 0;
-	}
+		app->conf->grid.x += 0.03125 * app->conf->grid.x_w;
 	app_render(app);
 	return (0);
 }

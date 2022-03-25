@@ -6,15 +6,15 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 14:44:54 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:28:17 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # define WIN_NAME "Fractol"
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 720
+# define WIN_W 1280
+# define WIN_H 720
 # define DEFAULT_ITERATIONS 50
 # define MAX_ITERATIONS 300
 # define COLOR_COUNT 148
@@ -71,10 +71,10 @@ typedef struct s_complex
 
 typedef struct s_grid
 {
-	long double	x_min;
-	long double	y_min;
-	long double	x_len;
-	long double	y_len;
+	long double	x;
+	long double	y;
+	long double	x_w;
+	long double	y_w;
 }	t_grid;
 
 typedef struct s_conf
@@ -87,10 +87,12 @@ typedef struct s_conf
 	int			toggle_chaos;
 	int			toggle_tracking;
 	int			fractal_id;
+	int			(*fractal_iterator)(t_complex, t_complex, int);
 	int			iterations;
 	int			color_step;
 	int			color_preset[COLOR_COUNT + MAX_ITERATIONS];
 	int			chaos_preset[COLOR_COUNT + MAX_ITERATIONS];
+	int			*colors;
 	int			fps;
 	int			fps_time;
 	int			fps_count;
