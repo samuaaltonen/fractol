@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 11:01:31 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:18:16 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,22 @@ int	events_keyup(int keycode, t_app *app)
 */
 int	events_keydown(int keycode, t_app *app)
 {
-	if (keycode == KEY_ARROW_LEFT)
+	if (keycode == KEY_PGDOWN)
 		app->conf->iterations -= 1;
-	if (keycode == KEY_ARROW_RIGHT)
+	if (keycode == KEY_PGUP)
 		app->conf->iterations += 1;
 	if (app->conf->iterations < 0)
 		app->conf->iterations = 0;
 	if (app->conf->iterations > MAX_ITERATIONS)
 		app->conf->iterations = MAX_ITERATIONS;
+	if (keycode == KEY_ARROW_UP)
+		app->conf->grid.y_min -= 0.03125 * app->conf->grid.x_len;
+	if (keycode == KEY_ARROW_DOWN)
+		app->conf->grid.y_min += 0.03125 * app->conf->grid.x_len;
+	if (keycode == KEY_ARROW_LEFT)
+		app->conf->grid.x_min -= 0.03125 * app->conf->grid.x_len;
+	if (keycode == KEY_ARROW_RIGHT)
+		app->conf->grid.x_min += 0.03125 * app->conf->grid.x_len;
 	app_render(app);
 	return (0);
 }

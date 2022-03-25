@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 11:00:33 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:13:24 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@
 # define KEY_4 21
 # define KEY_5 23
 # define KEY_6 22
+# define KEY_ARROW_UP 126
+# define KEY_ARROW_DOWN 125
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
+# define KEY_PGUP 116
+# define KEY_PGDOWN 121
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
 # include <fcntl.h>
