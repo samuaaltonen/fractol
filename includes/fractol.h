@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 17:00:42 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:29:18 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,24 @@
 # define WIN_NAME "Fractol"
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define MAX_ITERATIONS 50
+# define DEFAULT_ITERATIONS 50
+# define MAX_ITERATIONS 300
 # define COLOR_COUNT 148
 # define MSG_USAGE "usage: ./fractol"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define FRACTAL_MANDELBROT 0
+# define FRACTAL_JULIA 1
 # define KEY_ESC 53
 # define KEY_H 4
 # define KEY_A 0
 # define KEY_C 8
+# define KEY_1 18
+# define KEY_2 19
+# define KEY_3 20
+# define KEY_4 21
+# define KEY_5 23
+# define KEY_6 22
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
 # define MOUSE_SCROLL_UP 4
@@ -77,7 +85,7 @@ typedef struct s_conf
 	int		toggle_animation;
 	int		toggle_chaos;
 	int		fractal_id;
-	int		max_iterations;
+	int		iterations;
 	int		color_step;
 	int		color_preset[COLOR_COUNT + MAX_ITERATIONS];
 	int		chaos_preset[COLOR_COUNT + MAX_ITERATIONS];
@@ -132,7 +140,9 @@ int		events_loop(t_app *app);
 /*
  * Fractal iterators
 */
+void	init_fractal_coordinates(t_app *app);
 int		fractal_iterate_mandelbrot(t_complex z, int iterations);
+int		fractal_iterate_julia(t_complex z, int iterations);
 
 /*
  * Graphics

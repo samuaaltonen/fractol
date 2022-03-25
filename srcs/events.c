@@ -6,11 +6,23 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 15:40:47 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:28:50 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+ * Changes fractal set.
+*/
+static void	change_fractal(int keycode, t_app *app)
+{
+	if (keycode == KEY_1)
+		app->conf->fractal_id = FRACTAL_MANDELBROT;
+	if (keycode == KEY_2)
+		app->conf->fractal_id = FRACTAL_JULIA;
+	init_fractal_coordinates(app);
+}
 
 /*
  * Handles events for key presses (keyup).
@@ -26,6 +38,9 @@ int	events_keyup(int keycode, t_app *app)
 		app->conf->toggle_animation = ft_toggle(app->conf->toggle_animation);
 	if (keycode == KEY_C)
 		app->conf->toggle_chaos = ft_toggle(app->conf->toggle_chaos);
+	if (keycode == KEY_1 || keycode == KEY_2 || keycode == KEY_3
+		|| keycode == KEY_4 || keycode == KEY_5 || keycode == KEY_6)
+		change_fractal(keycode, app);
 	app_render(app);
 	return (0);
 }
@@ -36,11 +51,13 @@ int	events_keyup(int keycode, t_app *app)
 int	events_keydown(int keycode, t_app *app)
 {
 	if (keycode == KEY_ARROW_LEFT)
-		app->conf->max_iterations -= 1;
+		app->conf->iterations -= 1;
 	if (keycode == KEY_ARROW_RIGHT)
-		app->conf->max_iterations += 1;
-	if (app->conf->max_iterations < 0)
-		app->conf->max_iterations = 0;
+		app->conf->iterations += 1;
+	if (app->conf->iterations < 0)
+		app->conf->iterations = 0;
+	if (app->conf->iterations > MAX_ITERATIONS)
+		app->conf->iterations = MAX_ITERATIONS;
 	app_render(app);
 	return (0);
 }
@@ -50,7 +67,7 @@ int	events_keydown(int keycode, t_app *app)
 */
 int	events_mouse(int mousecode, int x, int y, t_app *app)
 {
-	//ft_printf("mousecode: %i x: %i y: %i app: %p\n", mousecode, x, y, app);
+	ft_printf("mousecode: %i x: %i y: %i\n", mousecode, x, y);
 	if (mousecode == MOUSE_SCROLL_UP)
 	{
 		app->conf->grid.x_min += x * app->conf->grid.x_len * 0.05 / WIN_WIDTH;
@@ -65,8 +82,6 @@ int	events_mouse(int mousecode, int x, int y, t_app *app)
 		app->conf->grid.x_len *= 1.05;
 		app->conf->grid.y_len *= 1.05;
 	}
-	ft_printf("Grind len: %.20Lf, grid start: %.20Lf\n", app->conf->grid.x_len, app->conf->grid.x_min);
-	app_render(app);
 	return (0);
 }
 
@@ -75,11 +90,12 @@ int	events_mouse(int mousecode, int x, int y, t_app *app)
 */
 int	events_loop(t_app *app)
 {
-	if (!app->conf->toggle_animation)
-		return (0);
-	app->conf->color_step++;
-	if (app->conf->color_step >= COLOR_COUNT)
-		app->conf->color_step = 0;
+	if (app->conf->toggle_animation)
+	{
+		app->conf->color_step++;
+		if (app->conf->color_step >= COLOR_COUNT)
+			app->conf->color_step = 0;
+	}
 	app_render(app);
 	return (0);
 }

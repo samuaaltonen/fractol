@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:39:26 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 16:57:51 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:22:34 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 /*
  * Multiplies 2 complex numbers.
 */
-static t_complex	ft_complex_multiply(t_complex a, t_complex b)
+static t_complex	ft_complex_square(t_complex a)
 {
 	t_complex	result;
 
-	result.real = a.real * b.real - a.imaginary * b.imaginary;
-	result.imaginary = a.real * b.imaginary + a.imaginary * b.real;
+	result.real = a.real * a.real - a.imaginary * a.imaginary;
+	result.imaginary = a.real * a.imaginary + a.imaginary * a.real;
 	return (result);
 }
 
@@ -41,7 +41,31 @@ int	fractal_iterate_mandelbrot(t_complex z, int iterations)
 		&& value.imaginary <= 2
 		&& value.real * value.real + value.imaginary * value.imaginary <= 4)
 	{
-		value = ft_complex_multiply(value, value);
+		value = ft_complex_square(value);
+		value.real = value.real + z.real;
+		value.imaginary = value.imaginary + z.imaginary;
+		i++;
+	}
+	return (i);
+}
+
+/*
+ * Iterates given complex number through Julia function.
+*/
+int	fractal_iterate_julia(t_complex z, int iterations)
+{
+	int			i;
+	t_complex	value;
+
+	i = 0;
+	value.real = 0;
+	value.imaginary = 0;
+	while (i < iterations
+		&& value.real <= 2
+		&& value.imaginary <= 2
+		&& value.real * value.real + value.imaginary * value.imaginary <= 4)
+	{
+		value = ft_complex_square(value);
 		value.real = value.real + z.real;
 		value.imaginary = value.imaginary + z.imaginary;
 		i++;

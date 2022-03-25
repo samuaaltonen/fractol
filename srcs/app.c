@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 14:51:02 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:30:11 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	display_help(t_app *app)
 	int					x;
 	int					y;
 	static const char	*h[] = {
+		"[1]                   FRACTAL: Mandelbrot set",
+		"[2]                   FRACTAL: Julia set",
 		"[h]                   Toggle help",
 		"[a]                   Toggle animation",
 		"[c]                   Toggle chaos",
@@ -94,6 +96,6 @@ void	app_render(t_app *app)
 	fractal_render(app);
 	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
 	mlx_string_put(app->mlx, app->win, 260, 0, 0xFFFFFF, "Iterations:");
-	mlx_string_put(app->mlx, app->win, 380, 0, 0xFFFFFF, ft_itoa(app->conf->max_iterations));
+	mlx_string_put(app->mlx, app->win, 380, 0, 0xFFFFFF, ft_itoa(app->conf->iterations));
 	update_fps_counter(app);
 }

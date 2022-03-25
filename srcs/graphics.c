@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/23 16:44:50 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:16:51 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	*get_fractal_iterator(t_app *app)
 {
 	static const void	*iterators[] = {
 		fractal_iterate_mandelbrot,
+		fractal_iterate_julia,
 		NULL
 	};
 
@@ -44,8 +45,8 @@ void	fractal_render(t_app *app)
 			result = (*iterator)((t_complex){
 					x * app->conf->grid.x_len / WIN_WIDTH + app->conf->grid.x_min,
 					y * app->conf->grid.y_len / WIN_HEIGHT + app->conf->grid.y_min},
-					app->conf->max_iterations);
-			if (result < app->conf->max_iterations)
+					app->conf->iterations);
+			if (result < app->conf->iterations)
 				put_pixel_to_image(app->image, x, y,
 					colors[app->conf->color_step + result]);
 			app->conf->total_iterations += result;
