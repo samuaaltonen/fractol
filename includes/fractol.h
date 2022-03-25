@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 14:12:34 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:44:54 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define MSG_USAGE "usage: ./fractol"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
+# define MSG_ERROR_THREADS "Could not create thread for fractal rendering."
 # define FRACTAL_MANDELBROT 0
 # define FRACTAL_JULIA 1
 # define KEY_ESC 53
@@ -42,7 +43,6 @@
 # define KEY_PGDOWN 121
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
-# define THREAD_COUNT 4
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>

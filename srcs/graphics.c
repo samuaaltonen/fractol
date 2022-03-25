@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 14:15:12 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:45:11 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ static void	*fractal_render(void *data)
 	pthread_exit(NULL);
 }
 
+/*
+ * Divides fractal rendering work to 4 threads.
+*/
 void	fractal_render_multithreaded(t_app *app)
 {
 	int					id;
@@ -72,7 +75,9 @@ void	fractal_render_multithreaded(t_app *app)
 	id = 0;
 	while (id < 4)
 	{
-		pthread_create(&thread_identifiers[id], NULL, fractal_render, (void *)(&thread_data[id]));
+		if (pthread_create(&thread_identifiers[id], NULL, fractal_render,
+				(void *)(&thread_data[id])))
+			exit_error(MSG_ERROR_THREADS);
 		id++;
 	}
 	id = 0;
