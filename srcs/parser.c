@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:59:30 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 16:13:10 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:17:41 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	parse_input(t_app *app, char *number)
 		exit(EXIT_SUCCESS);
 	}
 	app->conf->fractal_id = fractal_id;
-	app->conf->fractal_id = fractal_id;
+	switch_fractal(app);
 }
