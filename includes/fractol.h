@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 15:28:17 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:48:31 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@
 # define DEFAULT_ITERATIONS 50
 # define MAX_ITERATIONS 300
 # define COLOR_COUNT 148
-# define MSG_USAGE "usage: ./fractol"
+# define MSG_USAGE "{cyan}Usage: {reset}./fractol [fractal_id]\n\
+{cyan}Possible fractals:{reset}\n\
+  1: Mandelbrot\n\
+  2: Julia\n"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define MSG_ERROR_THREADS "Could not create thread for fractal rendering."

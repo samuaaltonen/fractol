@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:18:47 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 13:33:35 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:47:02 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 void	print_usage(void)
 {
-	ft_putendl(MSG_USAGE);
+	ft_printf(MSG_USAGE);
 }
 
 /*
