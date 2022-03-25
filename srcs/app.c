@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 10:58:56 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 13:13:30 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,14 @@ void	app_run(t_app *app)
 
 void	app_render(t_app *app)
 {
-	flush_image(app->image);
 	if (app->conf->toggle_help)
 	{
+		flush_image(app->image);
 		display_help(app);
 		return ;
 	}
-	fractal_render(app);
+	//fractal_render(app);
+	fractal_render_multithreaded(app);
 	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
 	mlx_string_put(app->mlx, app->win, 260, 0, 0xFFFFFF, "Iterations:");
 	mlx_string_put(app->mlx, app->win, 380, 0, 0xFFFFFF, ft_itoa(app->conf->iterations));

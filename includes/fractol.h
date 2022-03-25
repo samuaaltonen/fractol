@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 11:13:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:12:34 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@
 # define KEY_PGDOWN 121
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
+# define THREAD_COUNT 4
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
 # include <math.h>
 # include <time.h>
+# include <pthread.h>
 # include "libft.h"
 # include "mlx.h"
 
@@ -67,18 +69,12 @@ typedef struct s_complex
 	long double	imaginary;
 }	t_complex;
 
-typedef struct s_coord
-{
-	long long	x;
-	long long	y;
-}	t_coord;
-
 typedef struct s_grid
 {
-	double	x_min;
-	double	y_min;
-	double	x_len;
-	double	y_len;
+	long double	x_min;
+	long double	y_min;
+	long double	x_len;
+	long double	y_len;
 }	t_grid;
 
 typedef struct s_conf
@@ -110,6 +106,15 @@ typedef struct s_app
 	void		*mlx;
 	void		*win;
 }	t_app;
+
+typedef struct s_thread_data
+{
+	t_app	*app;
+	int		x_start;
+	int		y_start;
+	int		x_end;
+	int		y_end;
+}	t_thread_data;
 
 /*
  * Messages
@@ -155,6 +160,6 @@ int		fractal_iterate_julia(t_complex z, t_complex c, int iterations);
 /*
  * Graphics
 */
-void	fractal_render(t_app *app);
+void	fractal_render_multithreaded(t_app *app);
 
 #endif
