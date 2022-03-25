@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 15:48:31 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:14:32 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define MSG_ERROR_THREADS "Could not create thread for fractal rendering."
-# define FRACTAL_MANDELBROT 0
-# define FRACTAL_JULIA 1
+# define FRACTAL_MANDELBROT 1
+# define FRACTAL_JULIA 2
 # define KEY_ESC 53
 # define KEY_H 4
 # define KEY_A 0
@@ -133,6 +133,11 @@ void	exit_error(char *message);
 int		conf_init(t_app *app);
 
 /*
+ * Input
+*/
+void	parse_input(t_app *app, char *number);
+
+/*
  * Application
 */
 int		app_init(t_app **app);
@@ -158,7 +163,7 @@ int		events_loop(t_app *app);
 /*
  * Fractal iterators
 */
-void	init_fractal_coordinates(t_app *app);
+void	switch_fractal(t_app *app);
 int		fractal_iterate_mandelbrot(t_complex z, t_complex c, int iterations);
 int		fractal_iterate_julia(t_complex z, t_complex c, int iterations);
 

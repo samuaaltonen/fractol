@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 15:41:43 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:14:16 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,13 @@
 /*
  * Changes fractal set.
 */
-static void	change_fractal(int keycode, t_app *app)
+static void	handle_fractal_keys(int keycode, t_app *app)
 {
 	if (keycode == KEY_1)
-	{
 		app->conf->fractal_id = FRACTAL_MANDELBROT;
-		app->conf->fractal_iterator = fractal_iterate_mandelbrot;
-	}
 	if (keycode == KEY_2)
-	{
 		app->conf->fractal_id = FRACTAL_JULIA;
-		app->conf->fractal_iterator = fractal_iterate_julia;
-	}
-	init_fractal_coordinates(app);
+	switch_fractal(app);
 }
 
 /*
@@ -54,7 +48,7 @@ int	events_keyup(int keycode, t_app *app)
 		app->conf->toggle_tracking = ft_toggle(app->conf->toggle_tracking);
 	if (keycode == KEY_1 || keycode == KEY_2 || keycode == KEY_3
 		|| keycode == KEY_4 || keycode == KEY_5 || keycode == KEY_6)
-		change_fractal(keycode, app);
+		handle_fractal_keys(keycode, app);
 	app_render(app);
 	return (0);
 }

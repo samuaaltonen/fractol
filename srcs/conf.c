@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 15:33:59 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:12:57 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,4 @@ int	conf_init(t_app *app)
 	app->conf->c = (t_complex){0.L, 0.L};
 	init_color_preset(app);
 	return (1);
-}
-
-void	init_fractal_coordinates(t_app *app)
-{
-	if (app->conf->fractal_id == FRACTAL_MANDELBROT)
-		app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
-	if (app->conf->fractal_id == FRACTAL_JULIA)
-		app->conf->grid = (t_grid){-2.L, -2.L, 4.L, 4.L};
 }
