@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 10:16:51 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:03:21 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	fractal_render(t_app *app)
 {
 	int	x;
 	int	y;
-	int	(*iterator)(t_complex, int);
+	int	(*iterator)(t_complex, t_complex, int);
 	int	result;
 	int	*colors;
 
@@ -45,6 +45,7 @@ void	fractal_render(t_app *app)
 			result = (*iterator)((t_complex){
 					x * app->conf->grid.x_len / WIN_WIDTH + app->conf->grid.x_min,
 					y * app->conf->grid.y_len / WIN_HEIGHT + app->conf->grid.y_min},
+					app->conf->c,
 					app->conf->iterations);
 			if (result < app->conf->iterations)
 				put_pixel_to_image(app->image, x, y,
@@ -53,5 +54,5 @@ void	fractal_render(t_app *app)
 		}
 	}
 	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
-	ft_printf("Total iterations: %i\n", app->conf->total_iterations);
+	//ft_printf("Total iterations: %i\n", app->conf->total_iterations);
 }

@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 10:24:44 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:01:40 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	conf_init(t_app *app)
 	app->conf->toggle_help = 0;
 	app->conf->toggle_animation = 0;
 	app->conf->toggle_chaos = 0;
+	app->conf->toggle_tracking = 1;
 	app->conf->win_w = WIN_WIDTH;
 	app->conf->win_h = WIN_HEIGHT;
 	app->conf->fractal_id = FRACTAL_MANDELBROT;
@@ -61,6 +62,7 @@ int	conf_init(t_app *app)
 	app->conf->fps_count = 0;
 	app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
 	app->conf->total_iterations = 0;
+	app->conf->c = (t_complex){0.L, 0.L};
 	init_color_preset(app);
 	return (1);
 }

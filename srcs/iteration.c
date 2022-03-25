@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:39:26 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 10:22:34 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:35:31 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ static t_complex	ft_complex_square(t_complex a)
  * Iterates given complex number through Mandelbrot function. A point belongs
  * to Mandelbrot set if its absolute value is less or equal than 2 (sqrt of 4).
 */
-int	fractal_iterate_mandelbrot(t_complex z, int iterations)
+int	fractal_iterate_mandelbrot(t_complex z, t_complex c, int iterations)
 {
 	int			i;
 	t_complex	value;
 
+	(void)c;
 	i = 0;
 	value.real = 0;
 	value.imaginary = 0;
@@ -52,22 +53,19 @@ int	fractal_iterate_mandelbrot(t_complex z, int iterations)
 /*
  * Iterates given complex number through Julia function.
 */
-int	fractal_iterate_julia(t_complex z, int iterations)
+int	fractal_iterate_julia(t_complex z, t_complex c, int iterations)
 {
 	int			i;
-	t_complex	value;
 
 	i = 0;
-	value.real = 0;
-	value.imaginary = 0;
 	while (i < iterations
-		&& value.real <= 2
-		&& value.imaginary <= 2
-		&& value.real * value.real + value.imaginary * value.imaginary <= 4)
+		&& z.real <= 2
+		&& z.imaginary <= 2
+		&& z.real * z.real + z.imaginary * z.imaginary <= 4)
 	{
-		value = ft_complex_square(value);
-		value.real = value.real + z.real;
-		value.imaginary = value.imaginary + z.imaginary;
+		z = ft_complex_square(z);
+		z.real = z.real + c.real;
+		z.imaginary = z.imaginary + c.imaginary;
 		i++;
 	}
 	return (i);

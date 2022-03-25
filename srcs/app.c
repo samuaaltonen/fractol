@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 10:30:11 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:58:56 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	display_help(t_app *app)
 		"[h]                   Toggle help",
 		"[a]                   Toggle animation",
 		"[c]                   Toggle chaos",
+		"[m]                   Toggle mouse tracking (Julia)",
 		"[esc]                 Exit",
 		NULL,
 	};
@@ -75,6 +76,7 @@ void	app_run(t_app *app)
 			app->conf->win_h, app->conf->win_name);
 	mlx_key_hook(app->win, events_keyup, app);
 	mlx_hook(app->win, 2, 0, events_keydown, app);
+	mlx_hook(app->win, 6, 0, events_mouse_track, app);
 	mlx_mouse_hook(app->win, events_mouse, app);
 	mlx_loop_hook(app->mlx, events_loop, app);
 

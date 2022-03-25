@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 10:29:18 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:00:33 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define KEY_H 4
 # define KEY_A 0
 # define KEY_C 8
+# define KEY_M 46
 # define KEY_1 18
 # define KEY_2 19
 # define KEY_3 20
@@ -78,22 +79,24 @@ typedef struct s_grid
 
 typedef struct s_conf
 {
-	char	*win_name;
-	int		win_w;
-	int		win_h;
-	int		toggle_help;
-	int		toggle_animation;
-	int		toggle_chaos;
-	int		fractal_id;
-	int		iterations;
-	int		color_step;
-	int		color_preset[COLOR_COUNT + MAX_ITERATIONS];
-	int		chaos_preset[COLOR_COUNT + MAX_ITERATIONS];
-	int		fps;
-	int		fps_time;
-	int		fps_count;
-	int		total_iterations;
-	t_grid	grid;
+	char		*win_name;
+	int			win_w;
+	int			win_h;
+	int			toggle_help;
+	int			toggle_animation;
+	int			toggle_chaos;
+	int			toggle_tracking;
+	int			fractal_id;
+	int			iterations;
+	int			color_step;
+	int			color_preset[COLOR_COUNT + MAX_ITERATIONS];
+	int			chaos_preset[COLOR_COUNT + MAX_ITERATIONS];
+	int			fps;
+	int			fps_time;
+	int			fps_count;
+	int			total_iterations;
+	t_grid		grid;
+	t_complex	c;
 }	t_conf;
 
 typedef struct s_app
@@ -135,14 +138,15 @@ void	flush_image(t_image *image);
 int		events_keyup(int keycode, t_app *app);
 int		events_keydown(int keycode, t_app *app);
 int		events_mouse(int mousecode, int x, int y, t_app *app);
+int		events_mouse_track(int x, int y, t_app *app);
 int		events_loop(t_app *app);
 
 /*
  * Fractal iterators
 */
 void	init_fractal_coordinates(t_app *app);
-int		fractal_iterate_mandelbrot(t_complex z, int iterations);
-int		fractal_iterate_julia(t_complex z, int iterations);
+int		fractal_iterate_mandelbrot(t_complex z, t_complex c, int iterations);
+int		fractal_iterate_julia(t_complex z, t_complex c, int iterations);
 
 /*
  * Graphics
