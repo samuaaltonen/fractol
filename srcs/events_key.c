@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 18:30:48 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:50:03 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	handle_fractal_keys(int keycode, t_app *app)
 		app->conf->fractal_id = FRACTAL_MANDELBROT;
 	if (keycode == KEY_2)
 		app->conf->fractal_id = FRACTAL_JULIA;
+	if (keycode == KEY_3)
+		app->conf->fractal_id = FRACTAL_BURNING_SHIP;
 	switch_fractal(app);
 }
 

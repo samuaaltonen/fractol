@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:59:30 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 16:17:41 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:55:29 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	switch_fractal(t_app *app)
 	{
 		app->conf->fractal_iterator = fractal_iterate_julia;
 		app->conf->grid = (t_grid){-2.L, -2.L, 4.L, 4.L};
+	}
+	if (app->conf->fractal_id == FRACTAL_BURNING_SHIP)
+	{
+		app->conf->iterations = 30;
+		app->conf->fractal_iterator = fractal_iterate_burning_ship;
+		app->conf->grid = (t_grid){-2.L, -1.5L, 3.L, 2.L};
 	}
 }
 
