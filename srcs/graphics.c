@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 18:10:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:59:22 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,3 @@ void	fractal_render_multithreaded(t_app *app)
 	}
 	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
 }
-
-

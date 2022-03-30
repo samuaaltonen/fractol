@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 09:48:54 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:59:32 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 static void	handle_fractal_keys(int keycode, t_app *app)
 {
 	if (!(keycode == KEY_1 || keycode == KEY_2 || keycode == KEY_3
-		|| keycode == KEY_4 || keycode == KEY_5 || keycode == KEY_6))
+			|| keycode == KEY_4 || keycode == KEY_5 || keycode == KEY_6))
 		return ;
 	if (keycode == KEY_1)
 		app->conf->fractal_id = FRACTAL_MANDELBROT;

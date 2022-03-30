@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 10:42:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 11:03:27 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:27:49 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,9 +212,4 @@ int			ft_superint_log10(t_superint **superint);
 int			ft_superint_shift(t_superint **target, int shift);
 int			ft_superint_shift_block(t_superint **target, int shift);
 int			ft_printf(const char *format, ...);
-t_complex	ft_complex_multiply(t_complex a, t_complex b);
-t_complex	ft_complex_divide(t_complex num, t_complex denum);
-t_complex	ft_complex_square(t_complex a);
-t_complex	ft_complex_square_abs(t_complex a);
-t_complex	ft_complex_power(t_complex a, int pow);
 #endif

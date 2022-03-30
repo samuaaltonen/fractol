@@ -6,7 +6,7 @@
 #    By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 14:22:44 by saaltone          #+#    #+#              #
-#    Updated: 2022/03/25 16:05:47 by saaltone         ###   ########.fr        #
+#    Updated: 2022/03/30 11:37:26 by saaltone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ LIBFT_INCLUDES=./libft/includes
 LIBMLX=./libmlx
 LIBMLX_INCLUDES=./libmlx
 SOURCES_FILES=main.c error.c conf.c app.c events_key.c events_loop.c \
-				events_mouse.c graphics.c image.c iteration.c parser.c
+				events_mouse.c graphics.c image.c parser.c \
+				iteration_burning_ship.c iteration_julia.c \
+				iteration_mandelbrot.c iteration_newton.c
 SOURCES=$(SOURCES_FILES:%.c=srcs/%.c)
 OBJECTS=$(SOURCES:.c=.o)
 INCLUDES=./includes
