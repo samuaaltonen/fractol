@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 10:42:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/16 14:27:32 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 10:00:03 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,8 @@ int			ft_count_digits_ld(long double number);
 void		ft_putstr_color(char *str, char *color);
 double		ft_pow(double number, double power);
 int			ft_abs(int number);
+double		ft_abs_double(double number);
+long double	ft_abs_ldouble(long double number);
 void		ft_lstpop(t_list **start, t_list **pop, void (*del)(void*, size_t));
 int			ft_rgbtoint(int red, int green, int blue);
 int			ft_hextoint(char *hex);
