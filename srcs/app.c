@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 18:33:36 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 10:34:34 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	display_help(t_app *app)
 	static const char	*h[] = {
 		"[1]               FRACTAL: Mandelbrot set",
 		"[2]               FRACTAL: Julia set",
+		"[3]               FRACTAL: Burning ship",
+		"[4]               FRACTAL: Newton Chains",
 		"[h]               Toggle help",
 		"[a]               Toggle animation",
 		"[c]               Toggle chaos",

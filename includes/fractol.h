@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 18:49:43 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 10:34:46 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 {cyan}Possible fractals:{reset}\n\
   1: Mandelbrot\n\
   2: Julia\n\
-  3: Burning Ship\n"
+  3: Burning Ship\n\
+  4: Newton Chains\n"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define MSG_ERROR_THREADS "Could not create thread for fractal rendering."
 # define FRACTAL_MANDELBROT 1
 # define FRACTAL_JULIA 2
 # define FRACTAL_BURNING_SHIP 3
+# define FRACTAL_NEWTON 4
 # define KEY_ESC 53
 # define KEY_H 4
 # define KEY_A 0
@@ -176,6 +178,7 @@ void	switch_fractal(t_app *app);
 int		fractal_iterate_mandelbrot(t_complex z, t_complex c, int iterations);
 int		fractal_iterate_julia(t_complex z, t_complex c, int iterations);
 int		fractal_iterate_burning_ship(t_complex z, t_complex c, int iterations);
+int		fractal_iterate_newton_poly_1(t_complex z, t_complex c, int iterations);
 
 /*
  * Graphics
