@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 10:34:46 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 10:36:07 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,6 @@ typedef struct s_image
 	char	*img;
 	char	*data;
 }	t_image;
-
-typedef struct s_complex
-{
-	long double	real;
-	long double	imaginary;
-}	t_complex;
 
 typedef struct s_grid
 {
