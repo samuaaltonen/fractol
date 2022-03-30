@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 11:52:34 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:29:32 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define KEY_PGDOWN 121
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
-# define THREADS_DEFAULT 6
+# define THREADS_DEFAULT 8
 # define THREADS_MAX 32
 # include <fcntl.h>
 # include <stdio.h>
@@ -90,6 +90,12 @@ typedef struct s_thread_data
 	int		x_end;
 	int		y_end;
 }	t_thread_data;
+
+typedef struct s_complex
+{
+	long double	real;
+	long double	imaginary;
+}	t_complex;
 
 typedef struct s_conf
 {

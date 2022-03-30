@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 10:34:34 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:47:59 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	update_fps_counter(t_app *app)
 static void	display_help(t_app *app)
 {
 	int					i;
-	int					x;
-	int					y;
 	static const char	*h[] = {
 		"[1]               FRACTAL: Mandelbrot set",
 		"[2]               FRACTAL: Julia set",
@@ -49,17 +47,13 @@ static void	display_help(t_app *app)
 		NULL,
 	};
 
-	i = 0;
-	x = app->conf->win_w / 2 - 200;
-	y = app->conf->win_h / 2 - 140;
 	mlx_clear_window(app->mlx, app->win);
-	mlx_string_put(app->mlx, app->win, x - 130, y, 16777215, "Controls:");
-	while (h[i])
-	{
-		mlx_string_put(app->mlx, app->win, x, y + i * 30, 3471870,
-			(char *) h[i]);
-		i++;
-	}
+	mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 330,
+		app->conf->win_h / 2 - 140, 16777215, "Controls:");
+	i = -1;
+	while (h[++i])
+		mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 200,
+			app->conf->win_h / 2 - 140 + i * 30, 3471870, (char *) h[i]);
 }
 
 int	app_init(t_app **app)

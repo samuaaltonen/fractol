@@ -6,11 +6,30 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 11:59:22 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:43:08 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	draw_pixel(t_app *app, int x, int y, int result)
+{
+	if (result < app->conf->iterations
+		&& app->conf->fractal_id != FRACTAL_NEWTON)
+	{
+		put_pixel_to_image(app->image, x, y,
+			app->conf->colors[app->conf->color_step + result]);
+		return ;
+	}
+	if (result < MAX_ITERATIONS
+		&& app->conf->fractal_id == FRACTAL_NEWTON)
+	{
+		put_pixel_to_image(app->image, x, y,
+			app->conf->colors[app->conf->color_step + result]);
+		return ;
+	}
+	put_pixel_to_image(app->image, x, y, 0);
+}
 
 static void	*fractal_render(void *data)
 {
@@ -32,11 +51,7 @@ static void	*fractal_render(void *data)
 					x * app->conf->grid.x_w / WIN_W + app->conf->grid.x,
 					y * app->conf->grid.y_w / WIN_H + app->conf->grid.y},
 					app->conf->c, app->conf->iterations);
-			if (result < app->conf->iterations)
-				put_pixel_to_image(app->image, x, y,
-					app->conf->colors[app->conf->color_step + result]);
-			else
-				put_pixel_to_image(app->image, x, y, 0);
+			draw_pixel(app, x, y, result);
 		}
 	}
 	pthread_exit(NULL);

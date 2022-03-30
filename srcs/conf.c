@@ -6,11 +6,26 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 18:43:58 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:46:19 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	init_fracal_conf(t_app *app)
+{
+	app->conf->fractal_id = FRACTAL_MANDELBROT;
+	app->conf->fractal_iterator = fractal_iterate_mandelbrot;
+	app->conf->iterations = DEFAULT_ITERATIONS;
+	app->conf->color_step = 0;
+	app->conf->fps_count = 0;
+	app->conf->fps = 0;
+	app->conf->fps_time = time(NULL);
+	app->conf->fps_count = 0;
+	app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
+	app->conf->total_iterations = 0;
+	app->conf->c = (t_complex){0.L, 0.L};
+}
 
 static void	init_color_preset(t_app *app)
 {
@@ -74,18 +89,8 @@ int	conf_init(t_app *app)
 	app->conf->toggle_tracking = 1;
 	app->conf->win_w = WIN_W;
 	app->conf->win_h = WIN_H;
-	app->conf->fractal_id = FRACTAL_MANDELBROT;
-	app->conf->fractal_iterator = fractal_iterate_mandelbrot;
-	app->conf->iterations = DEFAULT_ITERATIONS;
-	app->conf->color_step = 0;
-	app->conf->fps_count = 0;
-	app->conf->fps = 0;
-	app->conf->fps_time = time(NULL);
-	app->conf->fps_count = 0;
-	app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
-	app->conf->total_iterations = 0;
-	app->conf->c = (t_complex){0.L, 0.L};
 	app->conf->thread_count = THREADS_DEFAULT;
+	init_fracal_conf(app);
 	init_color_preset(app);
 	init_thread_info(app);
 	return (1);

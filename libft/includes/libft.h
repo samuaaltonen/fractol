@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 10:42:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 11:27:49 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:29:24 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,6 @@ typedef struct s_superint
 	int	count;
 	int	*numbers;
 }	t_superint;
-
-typedef struct s_complex
-{
-	long double	real;
-	long double	imaginary;
-}	t_complex;
 
 int			ft_get_next_line(const int fd, char **line);
 void		ft_putchar(char c);

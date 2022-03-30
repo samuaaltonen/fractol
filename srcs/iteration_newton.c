@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:39:26 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 11:57:53 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:35:35 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ int	fractal_iterate_newton_poly_1(t_complex z, t_complex c, int iterations)
 		if (fabsl(z.real - 1) < 0.01L && fabsl(z.imaginary) < 0.01L)
 			return (i);
 		if (fabsl(z.real + 0.5L) < 0.01L && fabsl(z.imaginary - 0.866L) < 0.01L)
-			return (i);
+			return (i + MAX_ITERATIONS / 3);
 		if (fabsl(z.real + 0.5L) < 0.01L && fabsl(z.imaginary + 0.866L) < 0.01L)
-			return (i);
+			return (i + MAX_ITERATIONS / 3 * 2);
 		poly = newton_poly_div_1(z);
 		z.real = z.real - poly.real;
 		z.imaginary = z.imaginary - poly.imaginary;
