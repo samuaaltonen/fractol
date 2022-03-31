@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 14:18:32 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:12:50 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	handle_fractal_keys(int keycode, t_app *app)
 	if (keycode == KEY_4)
 		app->conf->fractal_id = FRACTAL_NEWTON;
 	if (keycode == KEY_5)
-		app->conf->fractal_id = FRACTAL_HOURGLASS;
+		app->conf->fractal_id = FRACTAL_BLACKHOLE;
 	switch_fractal(app);
 }
 
@@ -73,6 +73,8 @@ int	events_keyup(int keycode, t_app *app)
 	}
 	if (keycode == KEY_M)
 		app->conf->toggle_tracking = ft_toggle(app->conf->toggle_tracking);
+	if (keycode == KEY_R)
+		app->conf->toggle_rendering = ft_toggle(app->conf->toggle_rendering);
 	handle_thread_keys(keycode, app);
 	handle_fractal_keys(keycode, app);
 	app_render(app);

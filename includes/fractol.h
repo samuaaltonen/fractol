@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 14:16:17 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:13:22 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
   2: Julia\n\
   3: Burning Ship\n\
   4: Newton Chains\n\
-  5: Hourglass\n"
+  5: Blackhole\n"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define MSG_ERROR_THREADS "Could not create thread for fractal rendering."
@@ -32,7 +32,7 @@
 # define FRACTAL_JULIA 2
 # define FRACTAL_BURNING_SHIP 3
 # define FRACTAL_NEWTON 4
-# define FRACTAL_HOURGLASS 5
+# define FRACTAL_BLACKHOLE 5
 # define KEY_ESC 53
 # define KEY_H 4
 # define KEY_A 0
@@ -40,6 +40,7 @@
 # define KEY_M 46
 # define KEY_Q 12
 # define KEY_W 13
+# define KEY_R 15
 # define KEY_1 18
 # define KEY_2 19
 # define KEY_3 20
@@ -108,6 +109,7 @@ typedef struct s_conf
 	int			toggle_animation;
 	int			toggle_chaos;
 	int			toggle_tracking;
+	int			toggle_rendering;
 	int			fractal_id;
 	int			(*fractal_iterator)(t_complex, t_complex, int);
 	int			iterations;
@@ -181,7 +183,7 @@ int		fractal_iterate_mandelbrot(t_complex z, t_complex c, int max);
 int		fractal_iterate_julia(t_complex z, t_complex c, int max);
 int		fractal_iterate_burning_ship(t_complex z, t_complex c, int max);
 int		fractal_iterate_newton_chains(t_complex z, t_complex c, int max);
-int		fractal_iterate_newton_hourglass(t_complex z, t_complex c, int max);
+int		fractal_iterate_newton_blackhole(t_complex z, t_complex c, int max);
 
 /*
  * Graphics

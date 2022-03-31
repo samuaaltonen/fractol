@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 13:46:19 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:57:32 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	conf_init(t_app *app)
 	app->conf->toggle_animation = 0;
 	app->conf->toggle_chaos = 0;
 	app->conf->toggle_tracking = 1;
+	app->conf->toggle_rendering = 1;
 	app->conf->win_w = WIN_W;
 	app->conf->win_h = WIN_H;
 	app->conf->thread_count = THREADS_DEFAULT;

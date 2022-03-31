@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:41:22 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 15:41:36 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:58:16 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 */
 int	events_loop(t_app *app)
 {
+	if (!app->conf->toggle_rendering)
+		return (0);
 	if (app->conf->toggle_animation)
 	{
 		app->conf->color_step++;

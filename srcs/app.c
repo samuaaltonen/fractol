@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 12:43:03 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:56:24 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	display_help(t_app *app)
 		"[a]               Toggle animation",
 		"[c]               Toggle chaos",
 		"[m]               Toggle mouse tracking (Julia)",
+		"[r]               Toggle rendering (On by default)",
 		"[q]               Decrease thread count",
 		"[w]               Increase thread count",
 		"[esc]             Exit",
