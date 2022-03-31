@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 12:56:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:50:28 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ static void	display_help(t_app *app)
 	};
 
 	mlx_clear_window(app->mlx, app->win);
-	mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 330,
-		app->conf->win_h / 2 - 140, 16777215, "Controls:");
+	mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 300,
+		app->conf->win_h / 2 - 100, 16777215, "Controls:");
 	i = -1;
 	while (h[++i])
-		mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 200,
-			app->conf->win_h / 2 - 140 + i * 30, 3471870, (char *) h[i]);
+		mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 170,
+			app->conf->win_h / 2 - 100 + i * 30, 3471870, (char *) h[i]);
 }
 
 int	app_init(t_app **app)
@@ -108,4 +108,6 @@ void	app_render(t_app *app)
 	mlx_string_put(app->mlx, app->win, 0, 60, 0xFFFFFF, "FPS:");
 	mlx_string_put(app->mlx, app->win, 120, 60, 0xFFFFFF, temp);
 	free(temp);
+	if (!app->conf->toggle_rendering)
+		mlx_string_put(app->mlx, app->win, 0, 80, 0xFF0000, "Rendering OFF");
 }
