@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iteration_newton.c                                 :+:      :+:    :+:   */
+/*   iteration_newton_chains.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:39:26 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 13:35:35 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:11:22 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_complex	ft_complex_square(t_complex a)
 	return (result);
 }
 
-static t_complex	newton_poly_div_1(t_complex z)
+static t_complex	newton_poly_div_chains(t_complex z)
 {
 	t_complex	a;
 	t_complex	b;
@@ -88,14 +88,14 @@ static t_complex	newton_poly_div_1(t_complex z)
  * 
  * Roots: 1, -1/2 + sqrt(3)i/2, -1/2 - sqrt(3)i/2 
 */
-int	fractal_iterate_newton_poly_1(t_complex z, t_complex c, int iterations)
+int	fractal_iterate_newton_chains(t_complex z, t_complex c, int max)
 {
 	int			i;
 	t_complex	poly;
 
 	(void)c;
 	i = 0;
-	while (i < iterations)
+	while (i < max)
 	{
 		if (fabsl(z.real - 1) < 0.01L && fabsl(z.imaginary) < 0.01L)
 			return (i);
@@ -103,7 +103,7 @@ int	fractal_iterate_newton_poly_1(t_complex z, t_complex c, int iterations)
 			return (i + MAX_ITERATIONS / 3);
 		if (fabsl(z.real + 0.5L) < 0.01L && fabsl(z.imaginary + 0.866L) < 0.01L)
 			return (i + MAX_ITERATIONS / 3 * 2);
-		poly = newton_poly_div_1(z);
+		poly = newton_poly_div_chains(z);
 		z.real = z.real - poly.real;
 		z.imaginary = z.imaginary - poly.imaginary;
 		i++;

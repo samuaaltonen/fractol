@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:59:30 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 10:25:45 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:01:05 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ void	switch_fractal(t_app *app)
 	}
 	if (app->conf->fractal_id == FRACTAL_NEWTON)
 	{
-		app->conf->iterations = 30;
-		app->conf->fractal_iterator = fractal_iterate_newton_poly_1;
+		app->conf->fractal_iterator = fractal_iterate_newton_chains;
 		app->conf->grid = (t_grid){-4.L, -2.L, 8.L, 4.L};
+	}
+	if (app->conf->fractal_id == FRACTAL_HOURGLASS)
+	{
+		app->conf->iterations = 200;
+		app->conf->fractal_iterator = fractal_iterate_newton_hourglass;
+		app->conf->grid = (t_grid){1.5205L, -0.05L, 0.1L, 0.1L};
 	}
 }
 

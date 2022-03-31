@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 13:47:59 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:16:48 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	display_help(t_app *app)
 		"[2]               FRACTAL: Julia set",
 		"[3]               FRACTAL: Burning ship",
 		"[4]               FRACTAL: Newton Chains",
+		"[5]               FRACTAL: Hourglass",
 		"[h]               Toggle help",
 		"[a]               Toggle animation",
 		"[c]               Toggle chaos",

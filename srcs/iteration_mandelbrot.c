@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:32:16 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 12:49:39 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:11:31 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_complex	ft_complex_square(t_complex a)
  * Iterates given complex number through Mandelbrot function. A point belongs
  * to Mandelbrot set if its absolute value is less or equal than 2 (sqrt of 4).
 */
-int	fractal_iterate_mandelbrot(t_complex z, t_complex c, int iterations)
+int	fractal_iterate_mandelbrot(t_complex z, t_complex c, int max)
 {
 	int			i;
 	t_complex	value;
@@ -37,7 +37,7 @@ int	fractal_iterate_mandelbrot(t_complex z, t_complex c, int iterations)
 	i = 0;
 	value.real = 0;
 	value.imaginary = 0;
-	while (i < iterations
+	while (i < max
 		&& value.real <= 2
 		&& value.imaginary <= 2
 		&& value.real * value.real + value.imaginary * value.imaginary <= 4)

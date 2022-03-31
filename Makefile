@@ -6,7 +6,7 @@
 #    By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 14:22:44 by saaltone          #+#    #+#              #
-#    Updated: 2022/03/30 12:45:08 by saaltone         ###   ########.fr        #
+#    Updated: 2022/03/30 14:12:50 by saaltone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ LIBMLX_INCLUDES=./libmlx
 SOURCES_FILES=main.c error.c conf.c app.c events_key.c events_loop.c \
 				events_mouse.c graphics.c image.c parser.c \
 				iteration_burning_ship.c iteration_julia.c \
-				iteration_mandelbrot.c iteration_newton.c
+				iteration_mandelbrot.c iteration_newton_chains.c \
+				iteration_newton_hourglass.c
 SOURCES=$(SOURCES_FILES:%.c=srcs/%.c)
 OBJECTS=$(SOURCES:.c=.o)
 INCLUDES=./includes

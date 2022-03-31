@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 13:43:08 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:39:51 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 static void	draw_pixel(t_app *app, int x, int y, int result)
 {
 	if (result < app->conf->iterations
-		&& app->conf->fractal_id != FRACTAL_NEWTON)
+		&& app->conf->fractal_id != FRACTAL_NEWTON
+		&& app->conf->fractal_id != FRACTAL_HOURGLASS)
 	{
 		put_pixel_to_image(app->image, x, y,
 			app->conf->colors[app->conf->color_step + result]);
 		return ;
 	}
 	if (result < MAX_ITERATIONS
-		&& app->conf->fractal_id == FRACTAL_NEWTON)
+		&& (app->conf->fractal_id == FRACTAL_NEWTON
+		|| app->conf->fractal_id == FRACTAL_HOURGLASS))
 	{
 		put_pixel_to_image(app->image, x, y,
 			app->conf->colors[app->conf->color_step + result]);

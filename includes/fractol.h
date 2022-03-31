@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 13:29:32 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:16:17 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
   1: Mandelbrot\n\
   2: Julia\n\
   3: Burning Ship\n\
-  4: Newton Chains\n"
+  4: Newton Chains\n\
+  5: Hourglass\n"
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define MSG_ERROR_THREADS "Could not create thread for fractal rendering."
@@ -31,6 +32,7 @@
 # define FRACTAL_JULIA 2
 # define FRACTAL_BURNING_SHIP 3
 # define FRACTAL_NEWTON 4
+# define FRACTAL_HOURGLASS 5
 # define KEY_ESC 53
 # define KEY_H 4
 # define KEY_A 0
@@ -175,10 +177,11 @@ int		events_loop(t_app *app);
  * Fractal iterators
 */
 void	switch_fractal(t_app *app);
-int		fractal_iterate_mandelbrot(t_complex z, t_complex c, int iterations);
-int		fractal_iterate_julia(t_complex z, t_complex c, int iterations);
-int		fractal_iterate_burning_ship(t_complex z, t_complex c, int iterations);
-int		fractal_iterate_newton_poly_1(t_complex z, t_complex c, int iterations);
+int		fractal_iterate_mandelbrot(t_complex z, t_complex c, int max);
+int		fractal_iterate_julia(t_complex z, t_complex c, int max);
+int		fractal_iterate_burning_ship(t_complex z, t_complex c, int max);
+int		fractal_iterate_newton_chains(t_complex z, t_complex c, int max);
+int		fractal_iterate_newton_hourglass(t_complex z, t_complex c, int max);
 
 /*
  * Graphics
