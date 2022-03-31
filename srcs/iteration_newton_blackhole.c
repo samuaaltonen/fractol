@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:39:26 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 13:15:49 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:30:57 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static t_complex	newton_poly_div_blackhole(t_complex z)
 	long double	imaginary;
 
 	a = (t_complex){sin(z.real) * cosh(z.imaginary),
-						cos(z.real) * sinh(z.imaginary)};
+		cos(z.real) * sinh(z.imaginary)};
 	b = (t_complex){cos(z.real) * cosh(z.imaginary),
-						sin(z.real) * sinh(z.imaginary)};
+		sin(z.real) * sinh(z.imaginary)};
 	real = (a.real * b.real + a.imaginary * b.imaginary)
 		/ (b.real * b.real + b.imaginary * b.imaginary);
 	imaginary = (a.imaginary * b.real - a.real * b.imaginary)
@@ -52,7 +52,7 @@ int	fractal_iterate_newton_blackhole(t_complex z, t_complex c, int max)
 	while (i < max)
 	{
 		if (fabsl(z.imaginary) < 0.01L && fmodl(fabsl(z.real), M_PI) < 0.01L)
-			return (i + (int) ((fabsl(z.real) / M_PI) * 10));
+			return (i + (int)((fabsl(z.real) / M_PI) * 10));
 		poly = newton_poly_div_blackhole(z);
 		z.real = z.real - poly.real;
 		z.imaginary = z.imaginary - poly.imaginary;

@@ -6,11 +6,19 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:59:30 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 13:13:26 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:30:17 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	update_fractal_conf(t_app *app, int iteration_count,
+	int (*iterator)(t_complex, t_complex, int), t_grid grid)
+{
+	app->conf->iterations = iteration_count;
+	app->conf->fractal_iterator = iterator;
+	app->conf->grid = grid;
+}
 
 /*
  * Changes fractal set.
@@ -18,32 +26,20 @@
 void	switch_fractal(t_app *app)
 {
 	if (app->conf->fractal_id == FRACTAL_MANDELBROT)
-	{
-		app->conf->fractal_iterator = fractal_iterate_mandelbrot;
-		app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
-	}
+		update_fractal_conf(app, DEFAULT_ITERATIONS, fractal_iterate_mandelbrot,
+			(t_grid){-2.L, -1.L, 3.L, 2.L});
 	if (app->conf->fractal_id == FRACTAL_JULIA)
-	{
-		app->conf->fractal_iterator = fractal_iterate_julia;
-		app->conf->grid = (t_grid){-2.L, -2.L, 4.L, 4.L};
-	}
+		update_fractal_conf(app, DEFAULT_ITERATIONS, fractal_iterate_julia,
+			(t_grid){-2.L, -2.L, 4.L, 4.L});
 	if (app->conf->fractal_id == FRACTAL_BURNING_SHIP)
-	{
-		app->conf->iterations = 30;
-		app->conf->fractal_iterator = fractal_iterate_burning_ship;
-		app->conf->grid = (t_grid){-2.L, -1.5L, 3.L, 2.L};
-	}
+		update_fractal_conf(app, 30, fractal_iterate_burning_ship,
+			(t_grid){-2.L, -1.5L, 3.L, 2.L});
 	if (app->conf->fractal_id == FRACTAL_NEWTON)
-	{
-		app->conf->fractal_iterator = fractal_iterate_newton_chains;
-		app->conf->grid = (t_grid){-4.L, -2.L, 8.L, 4.L};
-	}
+		update_fractal_conf(app, DEFAULT_ITERATIONS,
+			fractal_iterate_newton_chains, (t_grid){-4.L, -2.L, 8.L, 4.L});
 	if (app->conf->fractal_id == FRACTAL_BLACKHOLE)
-	{
-		app->conf->iterations = 200;
-		app->conf->fractal_iterator = fractal_iterate_newton_blackhole;
-		app->conf->grid = (t_grid){1.5205L, -0.05L, 0.1L, 0.1L};
-	}
+		update_fractal_conf(app, 200, fractal_iterate_newton_blackhole,
+			(t_grid){1.5205L, -0.05L, 0.1L, 0.1L});
 }
 
 /*
