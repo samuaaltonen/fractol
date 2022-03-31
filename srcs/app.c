@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 14:16:48 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:43:03 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	app_run(t_app *app)
 
 void	app_render(t_app *app)
 {
+	char	*temp;
+
 	if (app->conf->toggle_help)
 	{
 		flush_image(app->image);
@@ -94,12 +96,15 @@ void	app_render(t_app *app)
 	update_fps_counter(app);
 	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
 	mlx_string_put(app->mlx, app->win, 0, 20, 0xFFFFFF, "Iterations:");
-	mlx_string_put(app->mlx, app->win, 120, 20, 0xFFFFFF,
-		ft_itoa(app->conf->iterations));
+	temp = ft_itoa(app->conf->iterations);
+	mlx_string_put(app->mlx, app->win, 120, 20, 0xFFFFFF, temp);
+	free(temp);
+	temp = ft_itoa(app->conf->thread_count);
 	mlx_string_put(app->mlx, app->win, 0, 40, 0xFFFFFF, "Threads:");
-	mlx_string_put(app->mlx, app->win, 120, 40, 0xFFFFFF,
-		ft_itoa(app->conf->thread_count));
+	mlx_string_put(app->mlx, app->win, 120, 40, 0xFFFFFF, temp);
+	free(temp);
+	temp = ft_itoa(app->conf->fps);
 	mlx_string_put(app->mlx, app->win, 0, 60, 0xFFFFFF, "FPS:");
-	mlx_string_put(app->mlx, app->win, 120, 60, 0xFFFFFF,
-		ft_itoa(app->conf->fps));
+	mlx_string_put(app->mlx, app->win, 120, 60, 0xFFFFFF, temp);
+	free(temp);
 }
