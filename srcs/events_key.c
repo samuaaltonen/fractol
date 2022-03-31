@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 13:12:50 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:17:01 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ int	events_keyup(int keycode, t_app *app)
 		exit(EXIT_SUCCESS);
 	if (keycode == KEY_H)
 		app->conf->toggle_help = ft_toggle(app->conf->toggle_help);
+	if (keycode == KEY_C)
+		app->conf->toggle_rgbpicker = ft_toggle(app->conf->toggle_rgbpicker);
 	if (keycode == KEY_A)
 		app->conf->toggle_animation = ft_toggle(app->conf->toggle_animation);
-	if (keycode == KEY_C)
+	if (keycode == KEY_X)
 	{
 		app->conf->toggle_chaos = ft_toggle(app->conf->toggle_chaos);
 		if (app->conf->toggle_chaos)

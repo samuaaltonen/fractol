@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 12:57:32 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:32:16 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,6 @@ static void	init_fracal_conf(t_app *app)
 	app->conf->grid = (t_grid){-2.L, -1.L, 3.L, 2.L};
 	app->conf->total_iterations = 0;
 	app->conf->c = (t_complex){0.L, 0.L};
-}
-
-static void	init_color_preset(t_app *app)
-{
-	int	r;
-	int	g;
-	int	b;
-	int	i;
-	int	random;
-
-	i = 0;
-	srand(time(NULL));
-	while (i < COLOR_COUNT + MAX_ITERATIONS)
-	{
-		r = (sin(0.042 * i + 2) + 1) * 127;
-		g = (sin(0.042 * i) + 1) * 127;
-		b = (sin(0.042 * i + 4) + 1) * 127;
-		app->conf->color_preset[i] = ft_rgbtoint(r, g, b);
-		random = rand();
-		srand(random);
-		random = random % (COLOR_COUNT + MAX_ITERATIONS);
-		r = (sin(0.042 * random + 2) + 1) * 127;
-		g = (sin(0.042 * random) + 1) * 127;
-		b = (sin(0.042 * random + 4) + 1) * 127;
-		app->conf->chaos_preset[i] = ft_rgbtoint(r, g, b);
-		i++;
-	}
-	app->conf->colors = app->conf->color_preset;
 }
 
 void	init_thread_info(t_app *app)
@@ -84,6 +56,7 @@ int	conf_init(t_app *app)
 		return (0);
 	app->conf->win_name = WIN_NAME;
 	app->conf->toggle_help = 0;
+	app->conf->toggle_rgbpicker = 0;
 	app->conf->toggle_animation = 0;
 	app->conf->toggle_chaos = 0;
 	app->conf->toggle_tracking = 1;

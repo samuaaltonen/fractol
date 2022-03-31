@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 13:13:22 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:32:50 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@
 # define FRACTAL_NEWTON 4
 # define FRACTAL_BLACKHOLE 5
 # define KEY_ESC 53
-# define KEY_H 4
 # define KEY_A 0
+# define KEY_H 4
+# define KEY_X 7
 # define KEY_C 8
-# define KEY_M 46
 # define KEY_Q 12
 # define KEY_W 13
 # define KEY_R 15
+# define KEY_M 46
 # define KEY_1 18
 # define KEY_2 19
 # define KEY_3 20
@@ -106,6 +107,7 @@ typedef struct s_conf
 	int			win_w;
 	int			win_h;
 	int			toggle_help;
+	int			toggle_rgbpicker;
 	int			toggle_animation;
 	int			toggle_chaos;
 	int			toggle_tracking;
@@ -151,6 +153,12 @@ void	init_thread_info(t_app *app);
  * Input
 */
 void	parse_input(t_app *app, char *number);
+
+/*
+ * Colors
+*/
+void	init_color_preset(t_app *app);
+void	rgbpicker_render(t_app *app);
 
 /*
  * Application

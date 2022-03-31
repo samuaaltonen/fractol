@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 13:50:28 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:28:28 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,29 @@ static void	display_help(t_app *app)
 {
 	int					i;
 	static const char	*h[] = {
-		"[1]               FRACTAL: Mandelbrot set",
-		"[2]               FRACTAL: Julia set",
-		"[3]               FRACTAL: Burning ship",
-		"[4]               FRACTAL: Newton Chains",
-		"[5]               FRACTAL: Hourglass",
-		"[h]               Toggle help",
-		"[a]               Toggle animation",
-		"[c]               Toggle chaos",
-		"[m]               Toggle mouse tracking (Julia)",
-		"[r]               Toggle rendering (On by default)",
-		"[q]               Decrease thread count",
-		"[w]               Increase thread count",
-		"[esc]             Exit",
-		NULL,
+		"[1]     FRACTAL: Mandelbrot set",
+		"[2]     FRACTAL: Julia set",
+		"[3]     FRACTAL: Burning ship",
+		"[4]     FRACTAL: Newton Chains",
+		"[5]     FRACTAL: Blackhole",
+		"[h]     Toggle help",
+		"[c]     Toggle color picker",
+		"[a]     Toggle color wave animation",
+		"[x]     Toggle chaos",
+		"[m]     Toggle mouse tracking (Julia)",
+		"[r]     Toggle rendering (On by default)",
+		"[q]     Decrease thread count", "[w]     Increase thread count",
+		"[esc]   Exit", NULL,
 	};
 
+	flush_image(app->image);
 	mlx_clear_window(app->mlx, app->win);
-	mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 300,
-		app->conf->win_h / 2 - 100, 16777215, "Controls:");
+	mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 360,
+		app->conf->win_h / 2 - 200, 16777215, "Controls:");
 	i = -1;
 	while (h[++i])
-		mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 170,
-			app->conf->win_h / 2 - 100 + i * 30, 3471870, (char *) h[i]);
+		mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 230,
+			app->conf->win_h / 2 - 200 + i * 30, 3471870, (char *) h[i]);
 }
 
 int	app_init(t_app **app)
@@ -88,14 +88,10 @@ void	app_render(t_app *app)
 	char	*temp;
 
 	if (app->conf->toggle_help)
-	{
-		flush_image(app->image);
-		display_help(app);
-		return ;
-	}
+		return (display_help(app));
 	fractal_render_multithreaded(app);
 	update_fps_counter(app);
-	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Toggle help");
+	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Options");
 	mlx_string_put(app->mlx, app->win, 0, 20, 0xFFFFFF, "Iterations:");
 	temp = ft_itoa(app->conf->iterations);
 	mlx_string_put(app->mlx, app->win, 120, 20, 0xFFFFFF, temp);
@@ -110,4 +106,6 @@ void	app_render(t_app *app)
 	free(temp);
 	if (!app->conf->toggle_rendering)
 		mlx_string_put(app->mlx, app->win, 0, 80, 0xFF0000, "Rendering OFF");
+	if (app->conf->toggle_rgbpicker)
+		rgbpicker_render(app);
 }
