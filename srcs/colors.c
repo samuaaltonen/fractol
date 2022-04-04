@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:29:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/04 16:17:34 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:29:51 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,17 @@ static void	display_selected_colors(t_app *app)
 	while (++x < 255)
 	{
 		if (x < 255)
-			color_index = COLOR_COUNT / 3 * 2;
-		if (x < 170)
-			color_index = COLOR_COUNT / 3;
-		if (x < 85)
+			color_index = COLOR_COUNT / 5 * 4;
+		if (x < 204)
+			color_index = COLOR_COUNT / 5 * 3;
+		if (x < 153)
+			color_index = COLOR_COUNT / 5 * 2;
+		if (x < 102)
+			color_index = COLOR_COUNT / 5;
+		if (x < 51)
 			color_index = 0;
 		y = -1;
-		while (++y < 36)
+		while (++y < 42)
 		{
 			put_pixel_to_image(app->image, WIN_W - 255 + x, 255 + y,
 				app->conf->colors[app->conf->color_step + color_index]);
@@ -65,10 +69,7 @@ static void	display_selected_colors(t_app *app)
 	}
 }
 
-/*
- * Renders color picker to right-top corner.
-*/
-void	rgbpicker_render(t_app *app)
+static void	display_color_wave_square(t_app *app)
 {
 	int	r;
 	int	g;
@@ -94,6 +95,16 @@ void	rgbpicker_render(t_app *app)
 			put_pixel_to_image(app->image, WIN_W - x, y, ft_rgbtoint(r, g, b));
 		}
 	}
+}
+
+/*
+ * Renders color picker to right-top corner.
+*/
+void	rgbpicker_render(t_app *app)
+{
+	if (!app->conf->toggle_rendering)
+		return ;
+	display_color_wave_square(app);
 	display_selected_colors(app);
 	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
 }
