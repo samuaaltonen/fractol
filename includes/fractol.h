@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 15:32:50 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:09:08 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WIN_H 720
 # define DEFAULT_ITERATIONS 50
 # define MAX_ITERATIONS 300
-# define COLOR_COUNT 148
+# define COLOR_COUNT 50
 # define MSG_USAGE "{cyan}Usage: {reset}./fractol [fractal_id]\n\
 {cyan}Possible fractals:{reset}\n\
   1: Mandelbrot\n\

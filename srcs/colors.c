@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:29:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/04 15:48:22 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:17:34 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,55 @@
 
 void	init_color_preset(t_app *app)
 {
-	int	r;
-	int	g;
-	int	b;
+	int	color;
 	int	i;
 	int	random;
+	double	wave_step;
 
 	i = 0;
+	wave_step = (2 * M_PI) / COLOR_COUNT;
 	srand(time(NULL));
 	while (i < COLOR_COUNT + MAX_ITERATIONS)
 	{
-		r = (sin(0.042 * i + 2) + 1) * 127;
-		g = (sin(0.042 * i) + 1) * 127;
-		b = (sin(0.042 * i + 4) + 1) * 127;
-		app->conf->color_preset[i] = ft_rgbtoint(r, g, b);
+		color = (int)((sin(wave_step * i + 2) + 1) * 127) << 16;
+		color += (int)((sin(wave_step * i) + 1) * 127) << 8;
+		color += (int)(sin(wave_step * i + 4) + 1) * 127;
+		app->conf->color_preset[i] = color;
 		random = rand();
 		srand(random);
 		random = random % (COLOR_COUNT + MAX_ITERATIONS);
-		r = (sin(0.042 * random + 2) + 1) * 127;
-		g = (sin(0.042 * random) + 1) * 127;
-		b = (sin(0.042 * random + 4) + 1) * 127;
-		app->conf->chaos_preset[i] = ft_rgbtoint(r, g, b);
+		color = (int)((sin(wave_step * random + 2) + 1) * 127) << 16;
+		color += (int)((sin(wave_step * random) + 1) * 127) << 8;
+		color += (int)(sin(wave_step * random + 4) + 1) * 127;
+		app->conf->chaos_preset[i] = color;
 		i++;
 	}
 	app->conf->colors = app->conf->color_preset;
+}
+
+static void	display_selected_colors(t_app *app)
+{
+	int	x;
+	int	y;
+	int	color_index;
+
+	x = -1;
+	color_index = 0;
+	while (++x < 255)
+	{
+		if (x < 255)
+			color_index = COLOR_COUNT / 3 * 2;
+		if (x < 170)
+			color_index = COLOR_COUNT / 3;
+		if (x < 85)
+			color_index = 0;
+		y = -1;
+		while (++y < 36)
+		{
+			put_pixel_to_image(app->image, WIN_W - 255 + x, 255 + y,
+				app->conf->colors[app->conf->color_step + color_index]);
+		}
+	}
 }
 
 /*
@@ -69,5 +94,6 @@ void	rgbpicker_render(t_app *app)
 			put_pixel_to_image(app->image, WIN_W - x, y, ft_rgbtoint(r, g, b));
 		}
 	}
+	display_selected_colors(app);
 	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
 }
