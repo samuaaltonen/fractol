@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:29:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/04 16:29:51 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:33:37 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	init_color_preset(t_app *app)
 {
-	int	color;
-	int	i;
-	int	random;
+	int		color;
+	int		i;
+	int		random;
 	double	wave_step;
 
 	i = 0;
@@ -26,14 +26,14 @@ void	init_color_preset(t_app *app)
 	{
 		color = (int)((sin(wave_step * i + 2) + 1) * 127) << 16;
 		color += (int)((sin(wave_step * i) + 1) * 127) << 8;
-		color += (int)(sin(wave_step * i + 4) + 1) * 127;
+		color += (int)((sin(wave_step * i + 4) + 1) * 127);
 		app->conf->color_preset[i] = color;
 		random = rand();
 		srand(random);
 		random = random % (COLOR_COUNT + MAX_ITERATIONS);
 		color = (int)((sin(wave_step * random + 2) + 1) * 127) << 16;
 		color += (int)((sin(wave_step * random) + 1) * 127) << 8;
-		color += (int)(sin(wave_step * random + 4) + 1) * 127;
+		color += (int)((sin(wave_step * random + 4) + 1) * 127);
 		app->conf->chaos_preset[i] = color;
 		i++;
 	}
