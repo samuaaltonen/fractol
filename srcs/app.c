@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 15:28:28 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/04 15:46:46 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	app_render(t_app *app)
 	if (app->conf->toggle_help)
 		return (display_help(app));
 	fractal_render_multithreaded(app);
+	if (app->conf->toggle_rgbpicker)
+		rgbpicker_render(app);
 	update_fps_counter(app);
 	mlx_string_put(app->mlx, app->win, 0, 0, 0xFFFFFF, "[h] Options");
 	mlx_string_put(app->mlx, app->win, 0, 20, 0xFFFFFF, "Iterations:");
@@ -106,6 +108,4 @@ void	app_render(t_app *app)
 	free(temp);
 	if (!app->conf->toggle_rendering)
 		mlx_string_put(app->mlx, app->win, 0, 80, 0xFF0000, "Rendering OFF");
-	if (app->conf->toggle_rgbpicker)
-		rgbpicker_render(app);
 }
