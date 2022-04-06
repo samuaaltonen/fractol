@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/06 13:34:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:11:50 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ void	init_color_preset(t_app *app);
 void	rgbpicker_render(t_app *app);
 void	rgbpicker_slot_select(t_app *app, int x, int y);
 void	rgbpicker_slot_set(t_app *app, int x, int y);
+void	rgbpicker_init_gradients(t_app *app, int index_start, int index_end);
 
 /*
  * Application

@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:29:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/06 14:59:06 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:11:42 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static void	display_color_wave_square(t_app *app)
 	}
 }
 
-static void	init_gradient_values(t_app *app, int index_start, int index_end)
+void	rgbpicker_init_gradients(t_app *app, int index_start, int index_end)
 {
 	int	i;
 	int	len;

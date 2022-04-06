@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:40:40 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/06 14:58:49 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:16:58 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	events_mouse(int mousecode, int x, int y, t_app *app)
 	{
 		app->conf->grid.x += x * app->conf->grid.x_w * 0.125 / WIN_W;
 		app->conf->grid.y += y * app->conf->grid.y_w * 0.125 / WIN_H;
-		app->conf->grid.x_w /= 1.125;
-		app->conf->grid.y_w /= 1.125;
+		app->conf->grid.x_w *= 0.875;
+		app->conf->grid.y_w *= 0.875;
 	}
 	if (mousecode == MOUSE_SCROLL_DOWN)
 	{
@@ -79,7 +79,7 @@ void	rgbpicker_slot_select(t_app *app, int x, int y)
 */
 void	rgbpicker_slot_set(t_app *app, int x, int y)
 {
-	int	color_index;
+	int	index;
 	int	cursor_color;
 
 	if (app->conf->selected_color == -1
@@ -88,10 +88,10 @@ void	rgbpicker_slot_set(t_app *app, int x, int y)
 	if (x > WIN_W - 255 && y > 255 && x < WIN_W && y < 297)
 		return ;
 	cursor_color = get_pixel_color(app->image, x, y);
-	color_index = (COLOR_COUNT / 5) * app->conf->selected_color;
+	index = (COLOR_COUNT / 5) * app->conf->selected_color;
 	app->conf->selected_color = -1;
-	app->conf->colors[color_index] = cursor_color;
-	init_gradient_values(app, color_index, color_index + (COLOR_COUNT / 5));
-	if (color_index > 0)
-		init_gradient_values(app, color_index - (COLOR_COUNT / 5), color_index);
+	app->conf->colors[index] = cursor_color;
+	rgbpicker_init_gradients(app, index, index + (COLOR_COUNT / 5));
+	if (index > 0)
+		rgbpicker_init_gradients(app, index - (COLOR_COUNT / 5), index);
 }
