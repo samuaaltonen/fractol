@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:29:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/06 13:35:43 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:44:35 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void	init_gradient_values(t_app *app, int index_start, int index_end)
 	int	i;
 	int	len;
 
-	len = index_end - index_start - 1;
+	len = index_end - index_start;
 	if (len <= 0)
 		return ;
 	i = 0;
@@ -110,6 +110,12 @@ static void	init_gradient_values(t_app *app, int index_start, int index_end)
 	{
 		app->conf->colors[index_start + i] = ft_color_between(i / (double) len,
 			app->conf->colors[index_start], app->conf->colors[index_end]);
+		i++;
+	}
+	i = COLOR_COUNT;
+	while (i < COLOR_COUNT + MAX_ITERATIONS)
+	{
+		app->conf->colors[i] = app->conf->colors[i - COLOR_COUNT];
 		i++;
 	}
 }
