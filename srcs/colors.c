@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:29:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/06 13:44:35 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/06 14:59:06 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static void	init_gradient_values(t_app *app, int index_start, int index_end)
 	while (i < len)
 	{
 		app->conf->colors[index_start + i] = ft_color_between(i / (double) len,
-			app->conf->colors[index_start], app->conf->colors[index_end]);
+				app->conf->colors[index_start], app->conf->colors[index_end]);
 		i++;
 	}
 	i = COLOR_COUNT;
@@ -130,45 +130,4 @@ void	rgbpicker_render(t_app *app)
 	display_color_wave_square(app);
 	display_selected_colors(app);
 	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
-}
-
-/*
- * Sets color slot as active.
-*/
-void	rgbpicker_slot_select(t_app *app, int x, int y)
-{
-	if (x < WIN_W - 255 || y < 255 || x > WIN_W || y > 297)
-		return ;
-	if (x < WIN_W)
-		app->conf->selected_color = 4;
-	if (x < WIN_W - 51)
-		app->conf->selected_color = 3;
-	if (x < WIN_W - 102)
-		app->conf->selected_color = 2;
-	if (x < WIN_W - 153)
-		app->conf->selected_color = 1;
-	if (x < WIN_W - 204)
-		app->conf->selected_color = 0;
-}
-
-/*
- * Sets color slot as active.
-*/
-void	rgbpicker_slot_set(t_app *app, int x, int y)
-{
-	int	color_index;
-	int	cursor_color;
-
-	if (app->conf->selected_color == -1
-		|| x < 0 || y < 0 || x > WIN_W || y > WIN_H)
-		return ;
-	if (x > WIN_W - 255 && y > 255 && x < WIN_W && y < 297)
-		return ;
-	cursor_color = get_pixel_color(app->image, x, y);
-	color_index = (COLOR_COUNT / 5) * app->conf->selected_color;
-	app->conf->selected_color = -1;
-	app->conf->colors[color_index] = cursor_color;
-	init_gradient_values(app, color_index, color_index + (COLOR_COUNT / 5));
-	if (color_index > 0)
-		init_gradient_values(app, color_index - (COLOR_COUNT / 5), color_index);
 }
