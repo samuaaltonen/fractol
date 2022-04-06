@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 15:32:16 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:38:12 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	conf_init(t_app *app)
 	app->conf->win_w = WIN_W;
 	app->conf->win_h = WIN_H;
 	app->conf->thread_count = THREADS_DEFAULT;
+	app->conf->selected_color = -1;
 	init_fracal_conf(app);
 	init_color_preset(app);
 	init_thread_info(app);

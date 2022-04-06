@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:34:30 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/21 17:18:05 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:19:26 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,23 @@ void	put_pixel_to_image(t_image *image, int x, int y, int color)
 		return ;
 	pixel = image->data + pixel_pos;
 	*(int *)pixel = color;
+}
+
+/*
+ * Returns pixel color at given position.
+*/
+int	get_pixel_color(t_image *image, int x, int y)
+{
+	int		bytes;
+	int		pixel_pos;
+	char	*pixel;
+
+	bytes = image->bpp / 8;
+	pixel_pos = (y * image->line_size) + (x * bytes);
+	if (pixel_pos < 0 || x > image->width || y > image->height)
+		return (0);
+	pixel = image->data + pixel_pos;
+	return (*(int *)pixel);
 }
 
 /*

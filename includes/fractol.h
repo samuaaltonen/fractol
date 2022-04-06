@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/04 16:09:08 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:34:24 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # define WIN_NAME "Fractol"
 # define WIN_W 1280
 # define WIN_H 720
-# define DEFAULT_ITERATIONS 50
+# define DEFAULT_ITERATIONS 100
 # define MAX_ITERATIONS 300
-# define COLOR_COUNT 50
+# define COLOR_COUNT 100
 # define MSG_USAGE "{cyan}Usage: {reset}./fractol [fractal_id]\n\
 {cyan}Possible fractals:{reset}\n\
   1: Mandelbrot\n\
@@ -54,6 +54,7 @@
 # define KEY_ARROW_RIGHT 124
 # define KEY_PGUP 116
 # define KEY_PGDOWN 121
+# define MOUSE_CLICK_LEFT 1
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
 # define THREADS_DEFAULT 8
@@ -116,6 +117,7 @@ typedef struct s_conf
 	int			(*fractal_iterator)(t_complex, t_complex, int);
 	int			iterations;
 	int			color_step;
+	int			selected_color;
 	int			color_preset[COLOR_COUNT + MAX_ITERATIONS];
 	int			chaos_preset[COLOR_COUNT + MAX_ITERATIONS];
 	int			*colors;
@@ -159,6 +161,8 @@ void	parse_input(t_app *app, char *number);
 */
 void	init_color_preset(t_app *app);
 void	rgbpicker_render(t_app *app);
+void	rgbpicker_slot_select(t_app *app, int x, int y);
+void	rgbpicker_slot_set(t_app *app, int x, int y);
 
 /*
  * Application
@@ -172,6 +176,7 @@ void	app_render(t_app *app);
 */
 t_image	*init_image(void *mlx, t_conf *conf);
 void	put_pixel_to_image(t_image *image, int x, int y, int color);
+int		get_pixel_color(t_image *image, int x, int y);
 void	flush_image(t_image *image);
 
 /*
