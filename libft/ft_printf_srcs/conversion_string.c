@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:38:20 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/07 16:15:48 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:22:35 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ void	print_str(t_conf **conf, char *str, int len)
 	if ((*conf)->width - len > 0 && !(*conf)->flag_leftadjusted)
 		out_char_repeat(left_filler, (*conf)->width - len, conf);
 	i = 0;
-	out_str(str, conf);
+	while (i < len)
+	{
+		out_char(str[i], conf);
+		i++;
+	}
 	if ((*conf)->width - len > 0 && (*conf)->flag_leftadjusted)
 		out_char_repeat(' ', (*conf)->width - len, conf);
 }
