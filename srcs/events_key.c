@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/31 15:17:01 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:50:36 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ static void	handle_thread_keys(int keycode, t_app *app)
 }
 
 /*
+ * Handles gallery key events, (save snapshot, display snapshots)
+*/
+static void	handle_gallery_keys(int keycode, t_app *app)
+{
+	if (keycode == KEY_S)
+		gallery_save_snapshot(app);
+}
+
+/*
  * Handles events for key presses (keyup).
 */
 int	events_keyup(int keycode, t_app *app)
@@ -77,6 +86,7 @@ int	events_keyup(int keycode, t_app *app)
 		app->conf->toggle_tracking = ft_toggle(app->conf->toggle_tracking);
 	if (keycode == KEY_R)
 		app->conf->toggle_rendering = ft_toggle(app->conf->toggle_rendering);
+	handle_gallery_keys(keycode, app);
 	handle_thread_keys(keycode, app);
 	handle_fractal_keys(keycode, app);
 	app_render(app);

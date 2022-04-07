@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/06 15:11:50 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:50:24 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # define WIN_NAME "Fractol"
 # define WIN_W 1280
 # define WIN_H 720
-# define DEFAULT_ITERATIONS 100
+# define DEFAULT_ITERATIONS 80
 # define MAX_ITERATIONS 300
-# define COLOR_COUNT 100
+# define COLOR_COUNT 80
 # define MSG_USAGE "{cyan}Usage: {reset}./fractol [fractal_id]\n\
 {cyan}Possible fractals:{reset}\n\
   1: Mandelbrot\n\
@@ -35,6 +35,7 @@
 # define FRACTAL_BLACKHOLE 5
 # define KEY_ESC 53
 # define KEY_A 0
+# define KEY_S 1
 # define KEY_H 4
 # define KEY_X 7
 # define KEY_C 8
@@ -59,6 +60,7 @@
 # define MOUSE_SCROLL_DOWN 5
 # define THREADS_DEFAULT 8
 # define THREADS_MAX 32
+# define SNAPSHOT_FILE "snapshots.txt"
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -203,5 +205,10 @@ int		fractal_iterate_newton_blackhole(t_complex z, t_complex c, int max);
  * Graphics
 */
 void	fractal_render_multithreaded(t_app *app);
+
+/*
+ * Gallery
+*/
+void	gallery_save_snapshot(t_app *app);
 
 #endif
