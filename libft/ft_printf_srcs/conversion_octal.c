@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conversion_octal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:06:14 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/16 15:35:37 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:12:57 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ void	conversion_octal(t_conf **conf)
 	if ((*conf)->width - len > 0
 		&& !(*conf)->flag_leftadjusted
 		&& !(*conf)->flag_zeropadded)
-		ft_putchar_n_repeat(' ', &((*conf)->n), (*conf)->width - len);
+		out_char_repeat(' ', (*conf)->width - len, conf);
 	if ((*conf)->width - len > 0
 		&& !(*conf)->flag_leftadjusted
 		&& (*conf)->flag_zeropadded)
-		ft_putchar_n_repeat('0', &((*conf)->n), (*conf)->width - len);
-	ft_putstr_n_case(itoa, &((*conf)->n), (*conf)->is_uppercase);
+		out_char_repeat('0', (*conf)->width - len, conf);
+	out_str_case(itoa, (*conf)->is_uppercase, conf);
 	if ((*conf)->width - len > 0 && (*conf)->flag_leftadjusted)
-		ft_putchar_n_repeat(' ', &((*conf)->n), (*conf)->width - len);
+		out_char_repeat(' ', (*conf)->width - len, conf);
 	free(itoa);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conversion_pointer.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:44:33 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/16 15:34:30 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:14:25 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ static void	pointer_prefix(t_conf **conf, char **output, unsigned long long nbr)
 
 	if ((*conf)->flag_zeropadded && !(*conf)->flag_leftadjusted)
 	{
-		ft_putstr("0x");
+		out_str("0x", conf);
 		(*conf)->width -= 2;
-		(*conf)->n += 2;
 		return ;
 	}
 	if (!nbr && ft_strlen(*output) == 1 && (*conf)->precision == 0)
@@ -81,12 +80,12 @@ void	conversion_pointer(t_conf **conf)
 		len = 2;
 	if ((*conf)->width - len > 0 && !(*conf)->flag_leftadjusted
 		&& !(*conf)->flag_zeropadded)
-		ft_putchar_n_repeat(' ', &((*conf)->n), (*conf)->width - len);
+		out_char_repeat(' ', (*conf)->width - len, conf);
 	if ((*conf)->width - len > 0 && !(*conf)->flag_leftadjusted
 		&& (*conf)->flag_zeropadded)
-		ft_putchar_n_repeat('0', &((*conf)->n), (*conf)->width - len);
-	ft_putstr_n_case(itoa, &((*conf)->n), 0);
+		out_char_repeat('0', (*conf)->width - len, conf);
+	out_str_case(itoa, 0, conf);
 	if ((*conf)->width - len > 0 && (*conf)->flag_leftadjusted)
-		ft_putchar_n_repeat(' ', &((*conf)->n), (*conf)->width - len);
+		out_char_repeat(' ', (*conf)->width - len, conf);
 	free(itoa);
 }
