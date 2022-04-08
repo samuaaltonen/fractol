@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/07 13:00:37 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:12:31 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define KEY_ESC 53
 # define KEY_A 0
 # define KEY_S 1
+# define KEY_L 37
 # define KEY_H 4
 # define KEY_X 7
 # define KEY_C 8
@@ -69,6 +70,7 @@
 # include <math.h>
 # include <time.h>
 # include <pthread.h>
+# include <stdlib.h>
 # include "libft.h"
 # include "mlx.h"
 
@@ -212,5 +214,6 @@ void	fractal_render_multithreaded(t_app *app);
  * Gallery
 */
 void	gallery_save_snapshot(t_app *app);
+void	gallery_load_snapshot(t_app *app, int snapshot_id);
 
 #endif
