@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 10:42:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/30 13:29:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:48:26 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,4 +206,5 @@ int			ft_superint_log10(t_superint **superint);
 int			ft_superint_shift(t_superint **target, int shift);
 int			ft_superint_shift_block(t_superint **target, int shift);
 int			ft_printf(const char *format, ...);
+int			ft_printf_fd(int fd, const char *format, ...);
 #endif

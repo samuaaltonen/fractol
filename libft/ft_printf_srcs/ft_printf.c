@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:22:10 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/07 16:18:30 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:04:30 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	handle_args(t_conf **conf, char **cursor)
 }
 
 /*
+ * Prints given format string with optional arguments.
  * Conversion specification is:
  * %[$][flags][width][.precision][length modifier]conversion
 */
@@ -57,6 +58,12 @@ int	ft_printf(const char *format, ...)
 	return (n);
 }
 
+/*
+ * Prints given format string to specific file descriptor with optional
+ * arguments.
+ * Conversion specification is:
+ * %[$][flags][width][.precision][length modifier]conversion
+*/
 int	ft_printf_fd(int fd, const char *format, ...)
 {
 	t_conf	*conf;

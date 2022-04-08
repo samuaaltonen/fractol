@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/07 12:50:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:00:37 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define MSG_ERROR "Error occured"
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define MSG_ERROR_THREADS "Could not create thread for fractal rendering."
+# define MSG_ERROR_SNAPSHOT_FILE "Could not open/create snapshot file."
+# define MSG_ERROR_SNAPSHOT_WRITE "Could not write to snapshot file."
 # define FRACTAL_MANDELBROT 1
 # define FRACTAL_JULIA 2
 # define FRACTAL_BURNING_SHIP 3
