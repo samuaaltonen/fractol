@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 12:50:44 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/24 15:12:24 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/24 15:27:05 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	gallery_load_snapshot(t_app *app, int snapshot_id)
 	i = 0;
 	while (i < snapshot_id && ft_get_next_line(fd, &snapshot) > 0)
 		i++;
-	while (ft_get_next_line(fd, &snapshot) > 0);
+	while (ft_get_next_line(fd, &snapshot) > 0)
+		i++;
 	close(fd);
 	split = ft_strsplit(snapshot, ';');
 	app->conf->fractal_id = ft_atoi(split[0]);
