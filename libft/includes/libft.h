@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 10:42:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/08 12:48:26 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/24 15:00:57 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ t_array		*ft_array_create(int element_size, int count);
 t_array		*ft_array_expand(t_array **array);
 void		*ft_array_insert(t_array **array, void *data);
 void		ft_array_foreach(t_array **array, void (*f)(void *));
+void		ft_free_array(void **arr);
 int			ft_min(int a, int b);
 int			ft_max(int a, int b);
 int			ft_toggle(int value);
