@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/08 14:12:18 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/04/24 17:00:34 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void	handle_gallery_keys(int keycode, t_app *app)
 */
 int	events_keyup(int keycode, t_app *app)
 {
-	ft_printf("%i\n", keycode);
 	if (keycode == KEY_ESC)
 		exit(EXIT_SUCCESS);
 	if (keycode == KEY_H)
