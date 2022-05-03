@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:15:51 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/24 17:00:34 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:24:32 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static void	handle_gallery_keys(int keycode, t_app *app)
 		gallery_save_snapshot(app);
 	if (keycode == KEY_L)
 		gallery_load_snapshot(app, 0);
+	if (keycode == KEY_G)
+		app->conf->toggle_gallery = ft_toggle(app->conf->toggle_gallery);
 }
 
 /*

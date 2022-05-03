@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:46 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:26:21 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ static void	update_fps_counter(t_app *app)
 	}
 }
 
-static void	display_help(t_app *app)
+static void	help_display(t_app *app)
 {
 	int					i;
 	static const char	*h[] = {
-		"[1]     FRACTAL: Mandelbrot set",
-		"[2]     FRACTAL: Julia set",
-		"[3]     FRACTAL: Burning ship",
-		"[4]     FRACTAL: Newton Chains",
+		"[1]     FRACTAL: Mandelbrot set", "[2]     FRACTAL: Julia set",
+		"[3]     FRACTAL: Burning ship", "[4]     FRACTAL: Newton Chains",
 		"[5]     FRACTAL: Blackhole",
 		"[h]     Toggle help",
 		"[c]     Toggle color picker",
@@ -44,6 +42,7 @@ static void	display_help(t_app *app)
 		"[x]     Toggle chaos",
 		"[m]     Toggle mouse tracking (Julia)",
 		"[r]     Toggle rendering (On by default)",
+		"[g]     Display gallery",
 		"[q]     Decrease thread count", "[w]     Increase thread count",
 		"[esc]   Exit", NULL,
 	};
@@ -88,7 +87,9 @@ void	app_render(t_app *app)
 	char	*temp;
 
 	if (app->conf->toggle_help)
-		return (display_help(app));
+		return (help_display(app));
+	if (app->conf->toggle_gallery)
+		return (gallery_display(app));
 	fractal_render_multithreaded(app);
 	if (app->conf->toggle_rgbpicker)
 		rgbpicker_render(app);

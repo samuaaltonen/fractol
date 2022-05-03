@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/08 14:12:31 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:26:01 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@
 # define KEY_ESC 53
 # define KEY_A 0
 # define KEY_S 1
-# define KEY_L 37
 # define KEY_H 4
+# define KEY_G 5
 # define KEY_X 7
 # define KEY_C 8
 # define KEY_Q 12
 # define KEY_W 13
 # define KEY_R 15
+# define KEY_L 37
 # define KEY_M 46
 # define KEY_1 18
 # define KEY_2 19
@@ -119,6 +120,7 @@ typedef struct s_conf
 	int			toggle_chaos;
 	int			toggle_tracking;
 	int			toggle_rendering;
+	int			toggle_gallery;
 	int			fractal_id;
 	int			(*fractal_iterator)(t_complex, t_complex, int);
 	int			iterations;
@@ -215,5 +217,6 @@ void	fractal_render_multithreaded(t_app *app);
 */
 void	gallery_save_snapshot(t_app *app);
 void	gallery_load_snapshot(t_app *app, int snapshot_id);
+void	gallery_display(t_app *app);
 
 #endif
