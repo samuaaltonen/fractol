@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:06 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/05 12:38:12 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:06:41 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_fracal_conf(t_app *app)
 	app->conf->fractal_id = FRACTAL_MANDELBROT;
 	app->conf->fractal_iterator = fractal_iterate_mandelbrot;
 	app->conf->iterations = DEFAULT_ITERATIONS;
-	app->conf->color_step = 0;
+	app->conf->color_step = 55;
 	app->conf->fps_count = 0;
 	app->conf->fps = 0;
 	app->conf->fps_time = time(NULL);
