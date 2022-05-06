@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 14:26:06 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:10:18 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@
 # define THREADS_DEFAULT 8
 # define THREADS_MAX 32
 # define SNAPSHOT_FILE "snapshots.txt"
-# define MAX_SNAPSHOT_COLS 4
-# define MAX_SNAPSHOT_ROWS 4
+# define GALLERY_COLS 4
+# define GALLERY_ROWS 4
+# define GALLERY_SLOTS 16
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>

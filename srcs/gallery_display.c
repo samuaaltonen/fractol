@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:11:38 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 15:53:48 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:13:21 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ static char	**gallery_read_snapshots(void)
 	char	**snapshots;
 	char	*line;
 
-	snapshots = (char **)malloc(sizeof(char *) * (MAX_SNAPSHOT_ROWS * MAX_SNAPSHOT_COLS + 1));
+	snapshots = (char **)malloc(sizeof(char *) * (GALLERY_SLOTS + 1));
 	if (!snapshots)
 		exit_error(MSG_ERROR_ALLOC);
-	ft_bzero(snapshots, sizeof(char *) * MAX_SNAPSHOT_ROWS * MAX_SNAPSHOT_COLS + 1);
+	ft_bzero(snapshots, sizeof(char *) * GALLERY_SLOTS + 1);
 	fd = open(SNAPSHOT_FILE, O_RDONLY);
 	if (fd < 0)
 		exit_error(MSG_ERROR_SNAPSHOT_FILE);
 	i = 0;
-	while (i < MAX_SNAPSHOT_ROWS * MAX_SNAPSHOT_COLS && ft_get_next_line(fd, &(snapshots[i])) > 0)
+	while (i < GALLERY_SLOTS && ft_get_next_line(fd, &(snapshots[i])) > 0)
 		i++;
-	while(ft_get_next_line(fd, &line))
+	while (ft_get_next_line(fd, &line))
 		free(line);
 	close(fd);
 	return (snapshots);
@@ -49,16 +49,18 @@ void	gallery_display(t_app *app)
 
 	gallery_background(app);
 	snapshots = gallery_read_snapshots();
-	replace_image_new(app, WIN_W / MAX_SNAPSHOT_COLS, WIN_H / MAX_SNAPSHOT_ROWS);
+	replace_image_new(app, WIN_W / GALLERY_COLS, WIN_H / GALLERY_ROWS);
 	row = 0;
-	while (row < MAX_SNAPSHOT_ROWS)
+	while (row < GALLERY_ROWS)
 	{
 		col = 0;
-		while (col < MAX_SNAPSHOT_COLS && snapshots[row * MAX_SNAPSHOT_COLS + col])
+		while (col < GALLERY_COLS && snapshots[row * GALLERY_COLS + col])
 		{
-			gallery_load_snapshot(app, snapshots[row * MAX_SNAPSHOT_COLS + col]);
+			gallery_load_snapshot(app, snapshots[row * GALLERY_COLS + col]);
 			fractal_render_singlethread(app);
-			mlx_put_image_to_window(app->mlx, app->win, app->image->img, col * WIN_W / MAX_SNAPSHOT_COLS, row * WIN_H / MAX_SNAPSHOT_ROWS);
+			mlx_put_image_to_window(app->mlx, app->win, app->image->img,
+				col * WIN_W / GALLERY_COLS,
+				row * WIN_H / GALLERY_ROWS);
 			col++;
 		}
 		row++;

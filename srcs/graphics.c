@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 14:32:45 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 14:19:10 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:12:40 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	*fractal_render(void *data)
 		while (++y < t->y_end)
 		{
 			result = app->conf->fractal_iterator((t_complex){
-					x * app->conf->grid.x_w / app->conf->win_w + app->conf->grid.x,
-					y * app->conf->grid.y_w / app->conf->win_h + app->conf->grid.y},
+					x * app->conf->grid.x_w
+					/ app->conf->win_w + app->conf->grid.x,
+					y * app->conf->grid.y_w
+					/ app->conf->win_h + app->conf->grid.y},
 					app->conf->c, app->conf->iterations);
 			draw_pixel(app, x, y, result);
 		}
@@ -100,8 +102,10 @@ void	fractal_render_singlethread(t_app *app)
 		while (y < app->conf->win_h)
 		{
 			result = app->conf->fractal_iterator((t_complex){
-					x * app->conf->grid.x_w / app->conf->win_w + app->conf->grid.x,
-					y * app->conf->grid.y_w / app->conf->win_h + app->conf->grid.y},
+					x * app->conf->grid.x_w
+					/ app->conf->win_w + app->conf->grid.x,
+					y * app->conf->grid.y_w
+					/ app->conf->win_h + app->conf->grid.y},
 					app->conf->c, app->conf->iterations);
 			draw_pixel(app, x, y, result);
 			y++;
