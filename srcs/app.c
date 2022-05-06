@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 14:14:14 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:47:46 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	help_display(t_app *app)
 		"[m]     Toggle mouse tracking (Julia)",
 		"[r]     Toggle rendering (On by default)",
 		"[g]     Display gallery",
+		"[s]     Save snapshot to gallery",
 		"[q]     Decrease thread count", "[w]     Increase thread count",
 		"[esc]   Exit", NULL,
 	};
@@ -50,11 +51,11 @@ static void	help_display(t_app *app)
 	flush_image(app->image);
 	mlx_clear_window(app->mlx, app->win);
 	mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 360,
-		app->conf->win_h / 2 - 200, 16777215, "Controls:");
+		app->conf->win_h / 2 - 230, 0xFFFFFF, "Controls:");
 	i = -1;
 	while (h[++i])
 		mlx_string_put(app->mlx, app->win, app->conf->win_w / 2 - 230,
-			app->conf->win_h / 2 - 200 + i * 30, 3471870, (char *) h[i]);
+			app->conf->win_h / 2 - 230 + i * 30, 0xFF55FF, (char *) h[i]);
 }
 
 int	app_init(t_app **app)
