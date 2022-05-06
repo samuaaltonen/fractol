@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/03 14:26:01 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 14:26:06 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
   4: Newton Chains\n\
   5: Blackhole\n"
 # define MSG_ERROR "Error occured"
+# define MSG_ERROR_ALLOC "Could not allocate memory."
 # define MSG_ERROR_IMAGE_INIT "Image initialization failed."
 # define MSG_ERROR_THREADS "Could not create thread for fractal rendering."
 # define MSG_ERROR_SNAPSHOT_FILE "Could not open/create snapshot file."
@@ -65,6 +66,8 @@
 # define THREADS_DEFAULT 8
 # define THREADS_MAX 32
 # define SNAPSHOT_FILE "snapshots.txt"
+# define MAX_SNAPSHOT_COLS 4
+# define MAX_SNAPSHOT_ROWS 4
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -187,6 +190,7 @@ t_image	*init_image(void *mlx, t_conf *conf);
 void	put_pixel_to_image(t_image *image, int x, int y, int color);
 int		get_pixel_color(t_image *image, int x, int y);
 void	flush_image(t_image *image);
+void	replace_image_new(t_app *app, int width, int height);
 
 /*
  * Events
@@ -210,13 +214,15 @@ int		fractal_iterate_newton_blackhole(t_complex z, t_complex c, int max);
 /*
  * Graphics
 */
-void	fractal_render_multithreaded(t_app *app);
+void	*fractal_render(void *data);
+void	fractal_render_multithread(t_app *app);
+void	fractal_render_singlethread(t_app *app);
 
 /*
  * Gallery
 */
 void	gallery_save_snapshot(t_app *app);
-void	gallery_load_snapshot(t_app *app, int snapshot_id);
+void	gallery_load_snapshot(t_app *app, char *snapshot);
 void	gallery_display(t_app *app);
 
 #endif

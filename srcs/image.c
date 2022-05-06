@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:34:30 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/06 13:19:26 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 14:25:55 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ t_image	*init_image(void *mlx, t_conf *conf)
 	image->data = mlx_get_data_addr(image->img, &(image->bpp),
 			&(image->line_size), &(image->endian));
 	return (image);
+}
+
+/*
+ * Replaces image with new image with specific size.
+*/
+void	replace_image_new(t_app *app, int width, int height)
+{
+	mlx_destroy_image(app->mlx, app->image->img);
+	free(app->image);
+	app->conf->win_w = width;
+	app->conf->win_h = height;
+	app->image = init_image(app->mlx, app->conf);
+	if (!app->image)
+		exit_error(NULL);
 }
 
 /* 

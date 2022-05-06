@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:14:08 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/03 14:26:21 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 14:14:14 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	app_render(t_app *app)
 		return (help_display(app));
 	if (app->conf->toggle_gallery)
 		return (gallery_display(app));
-	fractal_render_multithreaded(app);
+	fractal_render_multithread(app);
 	if (app->conf->toggle_rgbpicker)
 		rgbpicker_render(app);
 	update_fps_counter(app);

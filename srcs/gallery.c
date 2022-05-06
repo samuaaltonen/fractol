@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 12:50:44 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/24 15:27:05 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 13:56:08 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	gallery_load_grid(t_app *app, char *grid_data)
 /*
  * Loads a snapshot from snapshots file and sets config accordingly.
 */
-void	gallery_load_snapshot(t_app *app, int snapshot_id)
+/* void	gallery_load_snapshot(t_app *app, int snapshot_id)
 {
 	int		i;
 	int		fd;
@@ -68,9 +68,29 @@ void	gallery_load_snapshot(t_app *app, int snapshot_id)
 	i = 0;
 	while (i < snapshot_id && ft_get_next_line(fd, &snapshot) > 0)
 		i++;
-	while (ft_get_next_line(fd, &snapshot) > 0)
-		i++;
 	close(fd);
+	split = ft_strsplit(snapshot, ';');
+	app->conf->fractal_id = ft_atoi(split[0]);
+	switch_fractal(app);
+	app->conf->toggle_tracking = 0;
+	app->conf->iterations = ft_atoi(split[1]);
+	app->conf->thread_count = ft_atoi(split[2]);
+	gallery_load_grid(app, split[3]);
+	gallery_load_colors(app, split[4]);
+	gallery_load_mouse(app, split[5]);
+	ft_free_array((void **)split);
+	free(snapshot);
+} */
+
+/*
+ * Loads a snapshot from given snapshot string and sets config accordingly.
+*/
+void	gallery_load_snapshot(t_app *app, char *snapshot)
+{
+	char	**split;
+
+	if (!snapshot)
+		return ;
 	split = ft_strsplit(snapshot, ';');
 	app->conf->fractal_id = ft_atoi(split[0]);
 	switch_fractal(app);
