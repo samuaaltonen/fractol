@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 12:50:44 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 13:56:08 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 14:43:51 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	gallery_load_snapshot(t_app *app, char *snapshot)
 	app->conf->thread_count = ft_atoi(split[2]);
 	gallery_load_grid(app, split[3]);
 	gallery_load_colors(app, split[4]);
-	gallery_load_mouse(app, split[5]);
+	app->conf->color_step = ft_atoi(split[5]);
+	gallery_load_mouse(app, split[6]);
 	ft_free_array((void **)split);
 	free(snapshot);
 }
@@ -116,7 +117,7 @@ void	gallery_save_snapshot(t_app *app)
 	if (fd < 0)
 		exit_error(MSG_ERROR_SNAPSHOT_FILE);
 	ft_printf_fd(fd,
-		"%i;%i;%i;%.30Lf %.30Lf %.30Lf %.30Lf;%i %i %i %i %i;%.30Lf %.30Lf\n",
+		"%i;%i;%i;%.30Lf %.30Lf %.30Lf %.30Lf;%i %i %i %i %i;%i;%.30Lf %.30Lf\n",
 		app->conf->fractal_id,
 		app->conf->iterations,
 		app->conf->thread_count,
@@ -127,6 +128,7 @@ void	gallery_save_snapshot(t_app *app)
 		app->conf->colors[COLOR_COUNT / 5 * 2],
 		app->conf->colors[COLOR_COUNT / 5 * 3],
 		app->conf->colors[COLOR_COUNT / 5 * 4],
+		app->conf->color_step,
 		app->conf->c.real,
 		app->conf->c.imaginary
 		);
