@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 12:50:44 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 14:43:51 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:30:37 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,36 +53,6 @@ static void	gallery_load_grid(t_app *app, char *grid_data)
 }
 
 /*
- * Loads a snapshot from snapshots file and sets config accordingly.
-*/
-/* void	gallery_load_snapshot(t_app *app, int snapshot_id)
-{
-	int		i;
-	int		fd;
-	char	*snapshot;
-	char	**split;
-
-	fd = open(SNAPSHOT_FILE, O_RDONLY);
-	if (fd < 0)
-		exit_error(MSG_ERROR_SNAPSHOT_FILE);
-	i = 0;
-	while (i < snapshot_id && ft_get_next_line(fd, &snapshot) > 0)
-		i++;
-	close(fd);
-	split = ft_strsplit(snapshot, ';');
-	app->conf->fractal_id = ft_atoi(split[0]);
-	switch_fractal(app);
-	app->conf->toggle_tracking = 0;
-	app->conf->iterations = ft_atoi(split[1]);
-	app->conf->thread_count = ft_atoi(split[2]);
-	gallery_load_grid(app, split[3]);
-	gallery_load_colors(app, split[4]);
-	gallery_load_mouse(app, split[5]);
-	ft_free_array((void **)split);
-	free(snapshot);
-} */
-
-/*
  * Loads a snapshot from given snapshot string and sets config accordingly.
 */
 void	gallery_load_snapshot(t_app *app, char *snapshot)
@@ -90,6 +60,8 @@ void	gallery_load_snapshot(t_app *app, char *snapshot)
 	char	**split;
 
 	if (!snapshot)
+		return ;
+	if (ft_strchr_count(snapshot, ';') != 6)
 		return ;
 	split = ft_strsplit(snapshot, ';');
 	app->conf->fractal_id = ft_atoi(split[0]);
@@ -117,7 +89,7 @@ void	gallery_save_snapshot(t_app *app)
 	if (fd < 0)
 		exit_error(MSG_ERROR_SNAPSHOT_FILE);
 	ft_printf_fd(fd,
-		"%i;%i;%i;%.30Lf %.30Lf %.30Lf %.30Lf;%i %i %i %i %i;%i;%.30Lf %.30Lf\n",
+		"%i;%i;%i;%.30Lf %.30Lf %.30Lf %.30Lf;%i %i %i %i %i;%i;%.30Lf %.30Lf",
 		app->conf->fractal_id,
 		app->conf->iterations,
 		app->conf->thread_count,
@@ -132,5 +104,6 @@ void	gallery_save_snapshot(t_app *app)
 		app->conf->c.real,
 		app->conf->c.imaginary
 		);
+	ft_printf_fd(fd, "\n");
 	close(fd);
 }
