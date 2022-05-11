@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gallery.c                                          :+:      :+:    :+:   */
+/*   gallery_load.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 12:50:44 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 16:30:37 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:03:10 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	gallery_load_mouse(t_app *app, char *mouse_data)
 {
 	char	**mouse;
 
+	if (ft_strchr_count(mouse_data, ' ') != 1)
+		return ;
 	mouse = ft_strsplit(mouse_data, ' ');
 	app->conf->c.real = atof(mouse[0]);
 	app->conf->c.imaginary = atof(mouse[1]);
@@ -26,6 +28,8 @@ static void	gallery_load_colors(t_app *app, char *color_data)
 {
 	char	**colors;
 
+	if (ft_strchr_count(color_data, ' ') != 4)
+		return ;
 	colors = ft_strsplit(color_data, ' ');
 	app->conf->colors[0] = ft_atoi(colors[0]);
 	app->conf->colors[COLOR_COUNT / 5] = ft_atoi(colors[1]);
@@ -44,6 +48,8 @@ static void	gallery_load_grid(t_app *app, char *grid_data)
 {
 	char	**grid;
 
+	if (ft_strchr_count(grid_data, ' ') != 3)
+		return ;
 	grid = ft_strsplit(grid_data, ' ');
 	app->conf->grid.x = atof(grid[0]);
 	app->conf->grid.y = atof(grid[1]);
@@ -61,7 +67,8 @@ void	gallery_load_snapshot(t_app *app, char *snapshot)
 
 	if (!snapshot)
 		return ;
-	if (ft_strchr_count(snapshot, ';') != 6)
+	if (ft_strchr_count(snapshot, ';') != 6
+		|| ft_strchr_count(snapshot, ' ') != 8)
 		return ;
 	split = ft_strsplit(snapshot, ';');
 	app->conf->fractal_id = ft_atoi(split[0]);
@@ -75,35 +82,4 @@ void	gallery_load_snapshot(t_app *app, char *snapshot)
 	gallery_load_mouse(app, split[6]);
 	ft_free_array((void **)split);
 	free(snapshot);
-}
-
-/*
- * Saves snapshot of current state. Snapshot consist of: 
- * fractal_id, iteration count, thread count, grid dimensions, colors, mouse pos
-*/
-void	gallery_save_snapshot(t_app *app)
-{
-	int		fd;
-
-	fd = open(SNAPSHOT_FILE, O_WRONLY | O_APPEND | O_CREAT, 0755);
-	if (fd < 0)
-		exit_error(MSG_ERROR_SNAPSHOT_FILE);
-	ft_printf_fd(fd,
-		"%i;%i;%i;%.30Lf %.30Lf %.30Lf %.30Lf;%i %i %i %i %i;%i;%.30Lf %.30Lf",
-		app->conf->fractal_id,
-		app->conf->iterations,
-		app->conf->thread_count,
-		app->conf->grid.x, app->conf->grid.y,
-		app->conf->grid.x_w, app->conf->grid.y_w,
-		app->conf->colors[0],
-		app->conf->colors[COLOR_COUNT / 5],
-		app->conf->colors[COLOR_COUNT / 5 * 2],
-		app->conf->colors[COLOR_COUNT / 5 * 3],
-		app->conf->colors[COLOR_COUNT / 5 * 4],
-		app->conf->color_step,
-		app->conf->c.real,
-		app->conf->c.imaginary
-		);
-	ft_printf_fd(fd, "\n");
-	close(fd);
 }
