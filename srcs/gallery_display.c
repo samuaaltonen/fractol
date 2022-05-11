@@ -6,13 +6,42 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:11:38 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 16:38:06 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:32:05 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static char	**gallery_read_snapshots(void)
+/*
+ * Reads a single snapshot from snapshot file by id.
+*/
+char	*gallery_read_snapshot(int snapshot_id)
+{
+	int		i;
+	int		fd;
+	char	*snapshot;
+	char	*line;
+
+	snapshot = NULL;
+	fd = open(SNAPSHOT_FILE, O_RDONLY);
+	if (fd < 0)
+		exit_error(MSG_ERROR_SNAPSHOT_FILE);
+	i = 0;
+	while (i < GALLERY_SLOTS && ft_get_next_line(fd, &line) > 0)
+	{
+		if (i == snapshot_id)
+			snapshot = ft_strdup(line);
+		free(line);
+		i++;
+	}
+	close(fd);
+	return (snapshot);
+}
+
+/*
+ * Reads gallery snapshots from a file into array of strings.
+*/
+char	**gallery_read_snapshots(void)
 {
 	int		i;
 	int		fd;
@@ -35,12 +64,18 @@ static char	**gallery_read_snapshots(void)
 	return (snapshots);
 }
 
+/*
+ * Flushes gallery background (sets all pixels to black).
+*/
 static void	gallery_background(t_app *app)
 {
 	flush_image(app->image);
 	mlx_put_image_to_window(app->mlx, app->win, app->image->img, 0, 0);
 }
 
+/*
+ * Loads all snapshots individually and renders them (with single thread only).
+*/
 void	gallery_display(t_app *app)
 {
 	int		row;

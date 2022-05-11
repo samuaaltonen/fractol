@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:40:40 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/08 14:11:15 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:21:43 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	events_mouse(int mousecode, int x, int y, t_app *app)
 		rgbpicker_slot_select(app, x, y);
 	if (mousecode == MOUSE_CLICK_LEFT && app->conf->selected_color > -1)
 		rgbpicker_slot_set(app, x, y);
+	if (mousecode == MOUSE_CLICK_LEFT && app->conf->toggle_gallery)
+		gallery_mouse(app, x, y);
 	return (0);
 }
 

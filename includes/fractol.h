@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/06 16:46:11 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:29:29 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,10 @@ void	fractal_render_singlethread(t_app *app);
  * Gallery
 */
 void	gallery_save_snapshot(t_app *app);
+char	*gallery_read_snapshot(int snapshot_id);
+char	**gallery_read_snapshots(void);
 void	gallery_load_snapshot(t_app *app, char *snapshot);
 void	gallery_display(t_app *app);
+void	gallery_mouse(t_app *app, int x, int y);
 
 #endif

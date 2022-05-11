@@ -6,7 +6,7 @@
 #    By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 14:22:44 by saaltone          #+#    #+#              #
-#    Updated: 2022/05/03 14:26:35 by saaltone         ###   ########.fr        #
+#    Updated: 2022/05/11 13:25:43 by saaltone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SOURCES_FILES=main.c error.c conf.c app.c events_key.c events_loop.c \
 				events_mouse.c graphics.c image.c parser.c colors.c \
 				iteration_burning_ship.c iteration_julia.c \
 				iteration_mandelbrot.c iteration_newton_chains.c \
-				iteration_newton_blackhole.c gallery.c gallery_display.c
+				iteration_newton_blackhole.c gallery.c gallery_display.c \
+				gallery_mouse.c
 SOURCES=$(SOURCES_FILES:%.c=srcs/%.c)
 OBJECTS=$(SOURCES:.c=.o)
 INCLUDES=./includes
