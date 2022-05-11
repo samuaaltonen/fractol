@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 13:19:37 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/11 13:39:57 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:53:21 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	gallery_mouse(t_app *app, int x, int y)
 	snapshot = gallery_read_snapshot(snapshot_id);
 	if (snapshot)
 	{
-		gallery_load_snapshot(app, gallery_read_snapshot(snapshot_id));
+		gallery_load_snapshot(app, snapshot);
 		app->conf->toggle_gallery = 0;
 	}
 }
