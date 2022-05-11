@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 16:02:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/11 16:03:14 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:10:02 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,29 @@ void	gallery_save_snapshot(t_app *app)
 		);
 	ft_printf_fd(fd, "\n");
 	close(fd);
+}
+
+/*
+ * Deletes snapshot by id.
+*/
+void	gallery_delete_snapshot(int snapshot_id)
+{
+	int		i;
+	int		fd;
+	char	**snapshots;
+
+	snapshots = gallery_read_snapshots();
+	if (!snapshots)
+		return ;
+	fd = open(SNAPSHOT_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0755);
+	if (fd < 0)
+		exit_error(MSG_ERROR_SNAPSHOT_FILE);
+	i = 0;
+	while (snapshots[i])
+	{
+		if (snapshot_id != i)
+			ft_printf_fd(fd, "%s\n", snapshots[i]);
+		i++;
+	}
+	ft_free_array((void **)snapshots);
 }

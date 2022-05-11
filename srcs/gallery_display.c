@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:11:38 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/11 16:01:53 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:20:10 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,31 @@ static void	gallery_background(t_app *app)
 }
 
 /*
+ * Displays delete square
+*/
+static void	gallery_display_delete_square(t_app *app)
+{
+	int	col_w;
+	int	col_h;
+	int	x;
+	int	y;
+
+	col_w = WIN_W / GALLERY_COLS;
+	col_h = WIN_H / GALLERY_ROWS;
+	x = 0;
+	while (x < col_w / 10)
+	{
+		y = 0;
+		while (y < col_h / 10)
+		{
+			put_pixel_to_image(app->image, col_w - x - 1, y, 0xFF0000);
+			y++;
+		}
+		x++;
+	}
+}
+
+/*
  * Loads all snapshots individually and renders them (with single thread only).
 */
 void	gallery_display(t_app *app)
@@ -93,6 +118,7 @@ void	gallery_display(t_app *app)
 		{
 			gallery_load_snapshot(app, snapshots[row * GALLERY_COLS + col]);
 			fractal_render_singlethread(app);
+			gallery_display_delete_square(app);
 			mlx_put_image_to_window(app->mlx, app->win, app->image->img,
 				col * WIN_W / GALLERY_COLS,
 				row * WIN_H / GALLERY_ROWS);
