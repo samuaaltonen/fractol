@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/11 16:09:07 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:24:52 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define FRACTAL_BURNING_SHIP 3
 # define FRACTAL_NEWTON 4
 # define FRACTAL_BLACKHOLE 5
+# define TOTAL_FRACTALS 5
 # define KEY_ESC 53
 # define KEY_A 0
 # define KEY_S 1

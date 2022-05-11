@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:59:30 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/07 12:30:49 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:25:03 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse_input(t_app *app, char *number)
 	int	fractal_id;
 
 	fractal_id = ft_atoi(number);
-	if (fractal_id < 1 || fractal_id > 6)
+	if (fractal_id < 1 || fractal_id > TOTAL_FRACTALS)
 	{
 		print_usage();
 		exit(EXIT_SUCCESS);
