@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 16:02:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/11 16:10:02 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 13:56:24 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	gallery_delete_snapshot(int snapshot_id)
 	if (fd < 0)
 		exit_error(MSG_ERROR_SNAPSHOT_FILE);
 	i = 0;
-	while (snapshots[i])
+	while (i < GALLERY_SLOTS && snapshots[i])
 	{
 		if (snapshot_id != i)
 			ft_printf_fd(fd, "%s\n", snapshots[i]);

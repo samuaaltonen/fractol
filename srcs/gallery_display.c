@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:11:38 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/12 13:47:50 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 13:55:40 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**gallery_read_snapshots(void)
 	snapshots = (char **)malloc(sizeof(char *) * (GALLERY_SLOTS + 1));
 	if (!snapshots)
 		exit_error(MSG_ERROR_ALLOC);
-	ft_bzero(snapshots, sizeof(char *) * GALLERY_SLOTS + 1);
+	ft_bzero(snapshots, sizeof(char *) * (GALLERY_SLOTS + 1));
 	fd = open(SNAPSHOT_FILE, O_RDONLY);
 	if (fd < 0)
 		exit_error(MSG_ERROR_SNAPSHOT_FILE);
