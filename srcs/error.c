@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:18:47 by saaltone          #+#    #+#             */
-/*   Updated: 2022/03/25 15:47:02 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:06:26 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_usage(void)
 void	exit_error(char *message)
 {
 	if (message)
-		ft_putendl(message);
+		ft_printf("{red}%s{reset}\n", message);
 	else
 		perror(MSG_ERROR);
 	exit(EXIT_FAILURE);
