@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:29:50 by saaltone          #+#    #+#             */
-/*   Updated: 2022/04/24 14:55:09 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 12:51:13 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ static void	display_color_wave_square(t_app *app)
 	int	x;
 	int	y;
 
-	x = -1;
-	while (++x < 255)
+	x = 0;
+	while (++x <= 255)
 	{
 		r = (sin(0.0247 * x + 2) + 1) * 127;
 		g = (sin(0.0247 * x) + 1) * 127;

@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:20:36 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/11 16:24:52 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 12:45:32 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@
 # define MOUSE_CLICK_LEFT 1
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
+# define MOUSE_TRACKING_OFFSET_X -550
+# define MOUSE_TRACKING_OFFSET_Y -800
 # define THREADS_DEFAULT 8
 # define THREADS_MAX 32
 # define SNAPSHOT_FILE "snapshots.txt"

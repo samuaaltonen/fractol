@@ -6,12 +6,12 @@
 #    By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 14:22:44 by saaltone          #+#    #+#              #
-#    Updated: 2022/05/11 16:03:27 by saaltone         ###   ########.fr        #
+#    Updated: 2022/05/12 11:58:39 by saaltone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fractol
-COMP_FLAGS=-Wall -Wextra -Werror -O3 -g
+COMP_FLAGS=-Wall -Wextra -Werror -O3
 LIBFT=./libft
 LIBFT_INCLUDES=./libft/includes
 LIBMLX=./libmlx

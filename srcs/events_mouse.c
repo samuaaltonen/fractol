@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:40:40 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/11 13:21:43 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 12:44:04 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	events_mouse_track(int x, int y, t_app *app)
 	if (!app->conf->toggle_tracking)
 		return (0);
 	app->conf->c = (t_complex){
-		x / (long double)(WIN_W * 2),
-		y / (long double)(WIN_H * 2)
+		(x + MOUSE_TRACKING_OFFSET_X) / (long double)(WIN_W),
+		(y + MOUSE_TRACKING_OFFSET_Y) / (long double)(WIN_H)
 	};
 	return (0);
 }
