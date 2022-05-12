@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:11:38 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/11 16:20:10 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 13:47:50 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	**gallery_read_snapshots(void)
 	i = 0;
 	while (i < GALLERY_SLOTS && ft_get_next_line(fd, &(snapshots[i])) > 0)
 		i++;
-	while (ft_get_next_line(fd, &line))
+	while (ft_get_next_line(fd, &line) > 0)
 		free(line);
 	close(fd);
 	return (snapshots);

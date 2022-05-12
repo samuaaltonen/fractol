@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:40:40 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/12 12:44:04 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 13:44:58 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 */
 int	events_mouse(int mousecode, int x, int y, t_app *app)
 {
-	ft_printf("mousecode: %i x: %i y: %i\n", mousecode, x, y);
 	if (mousecode == MOUSE_SCROLL_UP)
 	{
 		app->conf->grid.x += x * app->conf->grid.x_w * 0.125 / WIN_W;
