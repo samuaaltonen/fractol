@@ -6,7 +6,7 @@
 /*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:11:38 by saaltone          #+#    #+#             */
-/*   Updated: 2022/05/12 13:55:40 by saaltone         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:10:18 by saaltone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*gallery_read_snapshot(int snapshot_id)
 		free(line);
 		i++;
 	}
+	while (ft_get_next_line(fd, &line) > 0)
+		free(line);
 	close(fd);
 	return (snapshot);
 }
